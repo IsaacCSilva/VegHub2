@@ -37,7 +37,9 @@ export class SlideMenu extends Component {
         return (
           <View style={{flex:1, backgroundColor: 'transparent'}}>
           <ActionButton onPress={() => this._panel.show() }
-                    buttonColor="rgba(231,76,60,1)" />
+                    buttonColor="rgba(0,66,14,1)"
+                    position="center"
+                    offsetY={8}/>
 
             <SlidingUpPanel
                             allowDragging = {false}
@@ -51,25 +53,27 @@ export class SlideMenu extends Component {
                                    }}>
                                    <View style={{
                                    flexDirection: 'row',
-                                   backgroundColor: 'white'}}>
+                                   backgroundColor: 'transparent',
+                                   width: DeviceWidth,
+                                   justifyContent: 'center'}}>
                                        <View>
                                            <TouchableOpacity onPress={() => this.handleClick('Camera')}>
-                                               <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, backgroundColor: 'powderblue'}}>
+                                               <View style={[styles.fourSquare, {borderTopLeftRadius: 10}]}>
                                                <Text> CAMTONO BEAN </Text>
                                                <Icon name = "rocket" size = {DeviceWidth*scaleVal} color="#900" />
                                                </View>
                                            </TouchableOpacity>
                                            <TouchableOpacity onPress={() => this.handleClick("Plants")}>
-                                               <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, backgroundColor: 'skyblue'}}>
+                                               <View style={[styles.fourSquare, {borderBottomLeftRadius: 10}]}>
                                                </View>
                                            </TouchableOpacity>
                                        </View>
                                        <View>
                                            <TouchableOpacity onPress={() => this.handleClick('Plants')}>
-                                               <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, marginLeft:1, backgroundColor: 'powderblue'}} />
+                                               <View style={[styles.fourSquare, {marginLeft: 1}, {borderTopRightRadius: 10}]} />
                                            </TouchableOpacity>
                                            <TouchableOpacity onPress={() => this.handleClick('Plants')}>
-                                               <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, marginLeft:1, backgroundColor: 'skyblue'}} />
+                                               <View style={[styles.fourSquare, {marginLeft: 1}, {borderBottomRightRadius: 10}]} />
                                            </TouchableOpacity>
                                        </View>
                                    </View>
@@ -173,7 +177,7 @@ export class PlantsScreen extends Component {
         ];
 
         return (
-            <View style={{flex:1, backgroundColor: '#700101'}}>
+            <View style={{flex:1, backgroundColor: 'white'}}>
             <FlatGrid
             itemDimension={130}
             items={items}
@@ -202,6 +206,18 @@ export class PlantsScreen extends Component {
 
 
 const styles = StyleSheet.create({
+  fourSquare: {
+      width: DeviceWidth*scaleVal,
+      height: DeviceWidth*scaleVal,
+      marginBottom:1,
+      backgroundColor: 'powderblue'
+  },
+  fourSquare1: {
+        width: DeviceWidth*scaleVal,
+        height: DeviceWidth*scaleVal,
+        marginBottom:1,
+        backgroundColor: 'blue'
+    },
   gridView: {
     marginTop: 20,
     flex: 1,
@@ -214,7 +230,7 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 16,
-    color: 'purple',
+    color: 'green',
     fontWeight: '600',
   },
   itemCode: {
@@ -233,5 +249,10 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: undefined,
     width: undefined,
-    }
+    },
+  backBox:{
+    flex:1,
+    height: 125,
+    backgroundColor: 'gray',
+  }
 });

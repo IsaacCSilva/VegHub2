@@ -25,6 +25,8 @@ import {HomeScreen as HomeTest} from './src/HomeScreen';
 
 import {PlantsResultsScreen} from './src/PlantsResultsScreen';
 
+import {PlantForm} from './src/PlantForm';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HomeStack = createStackNavigator(
@@ -52,7 +54,7 @@ const PlantStack = createStackNavigator({
 );
 
 const ProfileStack = createStackNavigator({
-        Profile: WeatherScreen
+        Profile: PlantForm
     },
     {
     }
@@ -85,7 +87,7 @@ const BottomTabNavigator = createBottomTabNavigator({
         tabBarOptions: {
             initialRouteName: 'Plants',
             style: {
-                backgroundColor: 'black',
+                backgroundColor: '#00420e',
                 color: 'white',
             }
     }

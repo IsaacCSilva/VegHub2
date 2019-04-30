@@ -17,30 +17,21 @@ export class PlantsResultsScreen extends Component {
         const data = navigation.getParam('data', 'NO-ID');
 
         return (
-            <ScrollView style={{backgroundColor:'gray'}}>
+            <ScrollView style={{backgroundColor:'white'}}>
                 <View style ={styles.col}>
                      <View style={styles.pictureBox}>
                         <Image
-                            source={require('./Images/plant-1.jpg')}
+                            source={require('./Images/plant-3.jpg')}
                             style={styles.picture}
-                            resizeMode="center"
                             />
                      </View>
-                     <View style={{
-                                 flex: 1,
-                                 flexDirection: 'row',
-                                 justifyContent: 'center',
-                                 alignItems: 'stretch',
-                                 marginTop: 10
-                             }}>
-                             <View style={{height: 50, width: 150, backgroundColor: 'red'}}>
-                                 <Text style ={styles.eventTitle}>camtono </Text>
-                             </View>
-                             <View style={{height: 50, width: 150, backgroundColor: 'black'}}>
-                                                              <Text style ={styles.eventTitle}>coachella </Text>
-                              </View>
 
+                     <View style={styles.plantBox}>
+                         <View style={styles.plantTitleBox}>
+                            <Text style ={[styles.eventTitle,{textAlign: 'left'}, {marginLeft: 10}]}> {data} </Text>
                          </View>
+                     </View>
+
                  </View>
             </ScrollView>
         );
@@ -49,11 +40,29 @@ export class PlantsResultsScreen extends Component {
 
 const styles = StyleSheet.create({
     pictureBox: {
-            height: 250,
+            height: 400,
             marginLeft: 10,
             marginRight: 10,
             marginTop: 10,
+            borderRadius: 8,
+            overflow: 'hidden',
             backgroundColor: 'steelblue'
+        },
+    plantBox: {
+        height: 300,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 10,
+        borderRadius: 8,
+        backgroundColor: '#fffaf7'
+    },
+    plantTitleBox: {
+            height: 50,
+            marginLeft: 10,
+            marginRight: 10,
+            marginTop: 10,
+            borderRadius: 8,
+            backgroundColor: 'white'
         },
     col:{
         flex: 1,
@@ -64,7 +73,7 @@ const styles = StyleSheet.create({
 
     picture: {
             flex:1,
-            resizeMode: 'contain',
+            resizeMode: 'cover',
             alignItems: 'center',
             height: undefined,
             width: undefined
@@ -73,9 +82,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Leixo',
         fontSize: 30,
         color: '#d33983',
-        borderColor: 'white',
-        borderRadius: 3,
-        textAlign:'left',
+        textAlign:'center',
 
     },
 });
