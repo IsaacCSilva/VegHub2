@@ -60,6 +60,8 @@
 		328BCF37710C4A298DF010B7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5011E4981A274BDB98F2ADD2 /* SimpleLineIcons.ttf */; };
 		2D0AACCF6DE44335A4BF34E6 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01B9B2DCB31E44149F3CA0DD /* Zocial.ttf */; };
 		3F4FF51BEB4E43F0B31C9C6C /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF47E4C5281247F9A203F974 /* libRNCamera.a */; };
+		E9AC5BBC66514788B0B23E3C /* libRNShineButton.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24160137DA4047959CE26958 /* libRNShineButton.a */; };
+		9AA143837B0C429592CA2864 /* OrangeBlossoms.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D84E1AC4DF444E8BDF1DB09 /* OrangeBlossoms.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -391,6 +393,9 @@
 		01B9B2DCB31E44149F3CA0DD /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		400CC59D4F7F4A39BE636D4C /* RNCamera.xcodeproj */ = {isa = PBXFileReference; name = "RNCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		EF47E4C5281247F9A203F974 /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		802D6338DFB14C27A33E6E7A /* RNShineButton.xcodeproj */ = {isa = PBXFileReference; name = "RNShineButton.xcodeproj"; path = "../node_modules/react-native-shine-button/ios/RNShineButton.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		24160137DA4047959CE26958 /* libRNShineButton.a */ = {isa = PBXFileReference; name = "libRNShineButton.a"; path = "libRNShineButton.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		8D84E1AC4DF444E8BDF1DB09 /* OrangeBlossoms.ttf */ = {isa = PBXFileReference; name = "OrangeBlossoms.ttf"; path = "../src/Assets/Fonts/OrangeBlossoms.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +427,7 @@
 				7377CCE67B244C3592B2C38E /* libRNGestureHandler.a in Frameworks */,
 				694CA4D7F08B4048BA58F4B3 /* libRNVectorIcons.a in Frameworks */,
 				3F4FF51BEB4E43F0B31C9C6C /* libRNCamera.a in Frameworks */,
+				E9AC5BBC66514788B0B23E3C /* libRNShineButton.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +622,7 @@
 				AF197AC192A346BAAB14A232 /* RNGestureHandler.xcodeproj */,
 				6F83245BFC204BAB8C7AEB75 /* RNVectorIcons.xcodeproj */,
 				400CC59D4F7F4A39BE636D4C /* RNCamera.xcodeproj */,
+				802D6338DFB14C27A33E6E7A /* RNShineButton.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -683,6 +690,7 @@
 				EA9901FE3ABE400990998D3B /* Octicons.ttf */,
 				5011E4981A274BDB98F2ADD2 /* SimpleLineIcons.ttf */,
 				01B9B2DCB31E44149F3CA0DD /* Zocial.ttf */,
+				8D84E1AC4DF444E8BDF1DB09 /* OrangeBlossoms.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1150,6 +1158,7 @@
 				AB8906E6331541DA9A431882 /* Octicons.ttf in Resources */,
 				328BCF37710C4A298DF010B7 /* SimpleLineIcons.ttf in Resources */,
 				2D0AACCF6DE44335A4BF34E6 /* Zocial.ttf in Resources */,
+				9AA143837B0C429592CA2864 /* OrangeBlossoms.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,12 +1298,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Debug;
@@ -1321,12 +1332,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Release;
@@ -1352,6 +1365,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Debug;
@@ -1376,6 +1390,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Release;
@@ -1410,12 +1425,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Debug;
@@ -1450,12 +1467,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Release;
@@ -1489,12 +1508,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Debug;
@@ -1528,12 +1549,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-shine-button\ios",
 				);
 			};
 			name = Release;

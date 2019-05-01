@@ -1,150 +1,154 @@
 import React, {Component} from 'react';
-import {TextInput, Text, View, ImageBackground, Image, TouchableOpacity} from "react-native";
-import {SlideMenu} from './MyScreens';
+import {ScrollView, Image, StyleSheet, WebView, Button, TouchableOpacity, View, Text} from 'react-native';
 
 export class HomeScreen extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            check : false
+        }
+    }
 
-    static navigationOptions = {
-            headerStyle:{
-                backgroundColor: 'transparent',
-                zIndex: 100,
-            },
-        };
-
-    onPress = () => {
+    renderWebView(){
+        if(this.state.check){
+            return(
+                <WebView
+                source={{uri: 'https://stackoverflow.com/questions/41236255/open-webview-on-touchableopacity-onpress-react-native'}}
+                style={{marginTop: 20}}
+                />
+            );
+            }else {
+            return(
+                <TouchableOpacity
+                onPress={()=>this.setState({check: true})}>
+                    <Text style={{fontSize: 50}}>News</Text>
+                </TouchableOpacity>
+            );
+        }
     }
 
     render() {
         return (
+            <ScrollView style={{backgroundColor:'white'}}>
+                <View style ={styles.col}>
+                     <View style={styles.plantTitle}>
+                        <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 15}, {fontWeight: 'bold'}]}>
+                           Welcome Home, Brad.
+                        </Text>
+                     </View>
+                     <View style={styles.pictureBox}>
+                        <Image
+                            source={require('./Images/plant-3.jpg')}
+                            style={styles.picture}
+                            />
+                     </View>
 
-            <ImageBackground style={{
-                flex: 1,
-                justifyContent: 'space-evenly',
-                alignItems: 'center',
-                height: '100%',
-                resizeMode: 'center',
-                }}
-                source={require('./Images/background.jpg')}>
-                <View style={{flex: 1, marginTop: '10%', alignItems: "center", justifyContent: "center"}}>
-                    <Image style={{
-                        flex: 1,
-                        resizeMode: 'center',
-                    }}
-                           source={require('./Images/Logo.png')}
-                    >
-                    </Image>
-                </View>
+                     <View style={styles.plantBox}>
+                         <Text style ={styles.headerText}> Weather </Text>
+                         <View style={styles.weatherBox}>
+                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> Michael the Ficus </Text>
+                         </View>
+                         <Text style ={styles.headerText}> Daily Tip </Text>
+                         <View style={styles.dailyTipBox}>
+                             <Text style={styles.dailyTip}> Try not to kill your plants </Text>
+                         </View>
+                     </View>
 
-                <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+                 </View>
+                 {this.renderWebView()}
 
-                    <View style={{
-                        flex: 1,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 20,
-                    }}>
-                        <View style={{flex: 1, alignItems: "center", justifyContent: "center",}}>
-
-                            <TouchableOpacity onPress={this.onPress} style={{flex: 1, backgroundColor: "#4169e1", width: 80,}}>
-                                <Text style={{
-                                    color: 'white',
-                                    fontSize: 24,
-                                    fontWeight: 'bold',
-                                    textAlignVertical: 'center',
-                                    textAlign: 'center',
-                                    marginVertical: 4,
-                                }}>f</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{flex: 1, alignItems: "center", justifyContent: "center",}}>
-
-                            <TouchableOpacity onPress={this.onPress} style={{flex: 1, backgroundColor: "#ff6347", width: 80,}}>
-                                <Text style={{
-                                    color: 'white',
-                                    fontSize: 24,
-                                    fontWeight: 'bold',
-                                    textAlignVertical: 'center',
-                                    textAlign: 'center',
-                                    marginVertical: 4,
-                                }}>g+</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{flex: 1, alignItems: "center", justifyContent: "center",}}>
-
-                            <TouchableOpacity onPress={this.onPress} style={{flex: 1, backgroundColor: "yellow", width: 80,}}>
-                                <Text style={{
-                                    color: 'white',
-                                    fontSize: 24,
-                                    fontWeight: 'bold',
-                                    textAlignVertical: 'center',
-                                    textAlign: 'center',
-                                    marginVertical: 4,
-                                }}>S</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={{
-                        flex: 1,
-                        backgroundColor: '#fa8072',
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: 2,
-                    }}>
-                        <TextInput
-                            value=''
-                            placeholder='Username'
-                            placeholderColor='black'
-                            style={{
-                                flex: 1,
-                                backgroundColor: 'white',
-                                fontSize: 15,
-                                color: '#fa8072',
-                                width: 250,
-                            }}>
-                        </TextInput>
-                    </View>
-                    <View style={{
-                        flex: 1,
-                        backgroundColor: '#fa8072',
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: 2,
-                    }}>
-                        <TextInput
-                            placeholder='Password'
-                            placeholderColor='black'
-                            secureTextEntry={true}
-                            style={{
-                                flex: 1,
-                                backgroundColor: 'white',
-                                fontSize: 15,
-                                color: '#fa8072',
-                                width: 250,
-                            }}>
-                        </TextInput>
-                    </View>
-                </View>
-                <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-                    <Text style={{color: 'white'}}>Forgot Password?</Text>
-                    <View style={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        alignItems: "center",
-                        justifyContent: "center",
-                        overflow: 'hidden',
-                        width: 250,
-                    }}>
-                        <TouchableOpacity onPress={this.onPress}
-                                          style={{flex: 1, alignItems: 'center', backgroundColor: '#fa8072'}}>
-                            <Text style={{fontSize: 25}}>Login</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{flex: 1, alignItems: "flex-start", justifyContent: "center"}}>
-                        <Text style={{color: 'white'}}>Create a new account</Text>
-                    </View>
-                </View>
-            </ImageBackground>
+            </ScrollView>
         );
     }
 }
+
+
+const styles = StyleSheet.create({
+    dailyTipBox: {
+        height: 170,
+        marginTop: 10,
+        borderRadius: 8,
+        backgroundColor: '#565656',
+        justifyContent: 'center',
+    },
+    dailyTip: {
+        fontFamily: 'OrangeBlossoms',
+        color: 'white',
+        fontSize: 40,
+        textAlign: 'center'
+    },
+    headerText: {
+        fontFamily: 'Roboto',
+        fontSize: 30,
+        color: 'black',
+        textAlign:'left',
+        color: 'white',
+        marginLeft: 10,
+        marginTop: 10,
+        fontWeight: 'bold'
+    },
+    pictureBox: {
+            height: 300,
+            marginLeft: 10,
+            marginRight: 10,
+            marginTop: 10,
+            borderRadius: 8,
+            overflow: 'hidden',
+            backgroundColor: 'steelblue'
+        },
+    plantBox: {
+        height: 800,
+        marginTop: 10,
+        backgroundColor: '#353535'
+    },
+    plantTitleBox: {
+            height: 85,
+            marginLeft: 10,
+            marginRight: 10,
+            marginTop: 10,
+            borderRadius: 8,
+            backgroundColor: 'white'
+        },
+    weatherBox: {
+                height: 180,
+                marginTop: 10,
+                borderRadius: 8,
+                backgroundColor: 'white'
+    },
+    col:{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+    },
+
+    picture: {
+            flex:1,
+            resizeMode: 'cover',
+            alignItems: 'center',
+            height: undefined,
+            width: undefined
+        },
+    plantTitle: {
+        fontFamily: 'Leixo',
+        fontSize: 30,
+        color: 'black',
+        textAlign:'center',
+        color: 'green',
+
+    },
+    plantSubTitle: {
+        fontFamily: 'Roboto',
+        fontSize: 25,
+        color: 'black',
+        textAlign:'left',
+
+    },
+    plantDescription: {
+        fontFamily: 'Roboto',
+        fontSize: 15,
+        color: 'black',
+        textAlign:'left',
+        marginLeft: 10
+    }
+});

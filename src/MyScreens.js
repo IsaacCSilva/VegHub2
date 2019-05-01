@@ -16,26 +16,25 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { PlantsResultsScreen } from './PlantsResultsScreen';
 
 import {SearchBar} from 'react-native-elements';
-const DeviceWidth = Dimensions.get('window').width
-const scaleVal = 0.4
+const DeviceWidth = Dimensions.get('window').width;
+const scaleVal = 0.4;
 
 // project ID = 5c92bc84f2a30baf4b46fea1
 //import { findFirst1 } from './Queries/findDB';
 
 
 export class SlideMenu extends Component {
-     handleClick = (data) => {
-            this.props.navigation.navigate(data);
-        }
-
-        static navigationOptions = {
-            headerStyle:{
-                backgroundColor: 'transparent',
-                zIndex: 100,
-            },
-        };
+    static navigationOptions = {
+        headerStyle:{
+            backgroundColor: 'transparent',
+            zIndex: 100,
+        },
+    };
 
     render() {
+        handleClick = (data) => {
+                    this.props.navigation.navigate(data);
+        }
         return (
           <View style={{flex:1, backgroundColor: 'transparent'}}>
           <ActionButton onPress={() => this._panel.show() }
@@ -87,73 +86,14 @@ export class SlideMenu extends Component {
       }
 
 }
-export class HomeScreen extends Component {
 
-    constructor(props){
-        super(props)
-        Obj = new findFirst1();
-    }
-
-    FindFirst=()=>{
-        Obj.findFirst();
-    }
-
-    handleClick = (data) => {
-        this.props.navigation.navigate(data);
-    }
-
+export class PlantsScreen extends Component {
     static navigationOptions = {
         headerStyle:{
             backgroundColor: 'transparent',
             zIndex: 100,
         },
     };
-
-  render() {
-    return (
-      <View style={{
-          flex: 1,
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-          marginBottom: 15
-        }}>
-        <View style={{
-        flexDirection: 'row',
-        backgroundColor: "white"}}>
-            <View>
-                <TouchableOpacity onPress={() => this.handleClick('Camera')}>
-                    <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, backgroundColor: 'powderblue'}}>
-                    <Text> {this.FindFirst} </Text>
-                    <Icon name = "rocket" size = {DeviceWidth*scaleVal} color="#900" />
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handleClick("Plants")}>
-                    <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, backgroundColor: 'skyblue'}}>
-                    </View>
-                </TouchableOpacity>
-            </View>
-            <View>
-                <TouchableOpacity onPress={() => this.handleClick('Camera')}>
-                    <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, marginLeft:1, backgroundColor: 'powderblue'}} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.handleClick('Camera')}>
-                    <View style={{width: DeviceWidth*scaleVal, height: DeviceWidth*scaleVal, marginBottom:1, marginLeft:1, backgroundColor: 'skyblue'}} />
-                </TouchableOpacity>
-            </View>
-        </View>
-    </View>
-    );
-  }
-}
-
-export class PlantsScreen extends Component {
-
-    static navigationOptions = {
-                headerStyle:{
-                    backgroundColor: 'transparent',
-                    zIndex: 100,
-                },
-            };
     //When uses presses a plant, navigates them to each plant's result screen
     handleClick = (data) => {
         this.props.navigation.navigate('PlantsResults', {data});
@@ -161,7 +101,6 @@ export class PlantsScreen extends Component {
     }
 
     render() {
-
         //Need MongoDB Query to get this shit
         //List of JSON Objects
         const items = [
@@ -184,9 +123,6 @@ export class PlantsScreen extends Component {
             itemDimension={130}
             items={items}
             style={styles.gridView}
-            // staticDimension={300}
-            // fixed
-            // spacing={20}
             renderItem={({ item, index }) => (
 
             <TouchableOpacity onPress={() => this.handleClick(item.name)}>

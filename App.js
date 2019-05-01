@@ -13,7 +13,6 @@ createAppContainer,
 createDrawerNavigator, } from 'react-navigation';
 
 import {
-HomeScreen,
 PlantsScreen,
 BagScreen,
 SlideMenu
@@ -21,24 +20,24 @@ SlideMenu
 import {CameraScreen} from './src/CameraScreen';
 import {WeatherScreen} from './src/Weather';
 
-import {HomeScreen as HomeTest} from './src/HomeScreen';
-
+import {LoginScreen} from './src/LoginScreen';
 import {PlantsResultsScreen} from './src/PlantsResultsScreen';
-
 import {PlantForm} from './src/PlantForm';
+import {HomeScreen} from './src/HomeScreen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HomeStack = createStackNavigator(
     {
+        Home: HomeScreen,
         Menu: SlideMenu,
-        //Home: HomeTest,
+        //Home: LoginScreen,
         Camera: CameraScreen
     },
     {
         defaultNavigationOptions: {
             headerStyle: {
-                backgroundColor: 'black',
+                backgroundColor: 'transparent',
             },
         }
     }
@@ -87,7 +86,7 @@ const BottomTabNavigator = createBottomTabNavigator({
         tabBarOptions: {
             initialRouteName: 'Plants',
             style: {
-                backgroundColor: '#00420e',
+                backgroundColor: 'white',
                 color: 'white',
             }
     }
