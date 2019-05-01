@@ -14,6 +14,8 @@ import {Alert, AppRegistry, Platform, TouchableOpacity} from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { PlantsResultsScreen } from './PlantsResultsScreen';
+
+import {SearchBar} from 'react-native-elements';
 const DeviceWidth = Dimensions.get('window').width
 const scaleVal = 0.4
 
@@ -39,7 +41,8 @@ export class SlideMenu extends Component {
           <ActionButton onPress={() => this._panel.show() }
                     buttonColor="rgba(0,66,14,1)"
                     position="center"
-                    offsetY={8}/>
+                    offsetY={8}
+                    />
 
             <SlidingUpPanel
                             allowDragging = {false}
@@ -159,8 +162,6 @@ export class PlantsScreen extends Component {
 
     render() {
 
-
-
         //Need MongoDB Query to get this shit
         //List of JSON Objects
         const items = [
@@ -177,6 +178,7 @@ export class PlantsScreen extends Component {
         ];
 
         return (
+
             <View style={{flex:1, backgroundColor: 'white'}}>
             <FlatGrid
             itemDimension={130}
@@ -189,7 +191,7 @@ export class PlantsScreen extends Component {
 
             <TouchableOpacity onPress={() => this.handleClick(item.name)}>
                 <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                <ImageBackground style ={styles.imageThumbnail} source={require('./Images/thumb.png')} resizeMode='cover'>
+                <ImageBackground style ={styles.imageThumbnail} source={require('./Images/sunflower.jpg')} resizeMode='cover'>
                         <Text style={styles.itemName}>{item.name}</Text>
                         <Text style={styles.itemCode}>{item.code}</Text>
 
@@ -229,9 +231,12 @@ const styles = StyleSheet.create({
     height: 150,
   },
   itemName: {
-    fontSize: 16,
-    color: 'green',
+    fontSize: 20,
+    color: 'white',
     fontWeight: '600',
+    position: 'absolute',
+    bottom: 0,
+    marginLeft: 5
   },
   itemCode: {
     fontWeight: '600',

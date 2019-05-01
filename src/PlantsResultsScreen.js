@@ -28,7 +28,14 @@ export class PlantsResultsScreen extends Component {
 
                      <View style={styles.plantBox}>
                          <View style={styles.plantTitleBox}>
-                            <Text style ={[styles.eventTitle,{textAlign: 'left'}, {marginLeft: 10}]}> {data} </Text>
+                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> Michael the Ficus </Text>
+                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 15}, {color: 'gray'}, {fontSize: 20}]}> Garden Plant </Text>
+                         </View>
+                         <View style={[styles.plantTitleBox, {height: 110}, {backgroundColor: '#ccb29d'}]}>
+                             <Text style ={[styles.plantSubTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> About </Text>
+                             <Text style ={styles.plantDescription}>
+                                Lorem Ipsum suck a bitch motherfucker waht the fuck do you want I do gorilla warfare in the united states navy
+                             </Text>
                          </View>
                      </View>
 
@@ -54,10 +61,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop: 10,
         borderRadius: 8,
-        backgroundColor: '#fffaf7'
+        backgroundColor: '#3f1d00'
     },
     plantTitleBox: {
-            height: 50,
+            height: 85,
             marginLeft: 10,
             marginRight: 10,
             marginTop: 10,
@@ -78,11 +85,26 @@ const styles = StyleSheet.create({
             height: undefined,
             width: undefined
         },
-    eventTitle: {
+    plantTitle: {
         fontFamily: 'Leixo',
         fontSize: 30,
-        color: '#d33983',
+        color: 'black',
         textAlign:'center',
+        color: 'green',
 
     },
+    plantSubTitle: {
+        fontFamily: 'Roboto',
+        fontSize: 25,
+        color: 'black',
+        textAlign:'left',
+
+    },
+    plantDescription: {
+        fontFamily: 'Roboto',
+        fontSize: 15,
+        color: 'black',
+        textAlign:'left',
+        marginLeft: 10
+    }
 });
