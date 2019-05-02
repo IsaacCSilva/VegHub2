@@ -33,7 +33,7 @@ export class HomeScreen extends Component {
                 <View style ={styles.col}>
                      <View style={styles.plantTitle}>
                         <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 15}, {fontWeight: 'bold'}]}>
-                           Welcome Home, Brad.
+                           Welcome Home, Camtono.
                         </Text>
                      </View>
                      <View style={styles.pictureBox}>

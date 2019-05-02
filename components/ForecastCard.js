@@ -18,15 +18,13 @@ export default class ForecastCard extends Component {
 		if(Number(hours) > 12)
 		{
 			var tmp = Number(hours) - 12;
-
 			hours = String(tmp);
-
 			var status = " PM";
 		}
 
 		else
 		{
-				var status = " AM"
+            var status = " AM"
 		}
 
 		// Minutes part from the timestamp
@@ -38,15 +36,14 @@ export default class ForecastCard extends Component {
 			<Card containerStyle={styles.card}>
 				<Text style={styles.notes}>{this.props.location}</Text>
 
-				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+				<View style={{flexDirection:'column', justifyContent:'space-between', alignItems:'flex-start'}}>
 					<Image style={{width:100, height:100}} source={{uri:"https://openweathermap.org/img/w/" + this.props.detail.weather[0].icon + ".png"}} />
 					<Text style={styles.time}>{time}</Text>
 				</View>
 
-
 				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:20}} />
 
-				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
+				<View style={{flexDirection:'column', justifyContent:'flex-start'}}>
 					<Text style={styles.notes}>{this.props.detail.weather[0].description}</Text>
 					<Text style={styles.notes}>{Math.round( this.props.detail.main.temp * 10) / 10 }&#8457;</Text>
 				</View>
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
 		borderRadius:20
 	},
 	time:{
-		fontSize:38,
+		fontSize:25,
 		color:'#fff'
 	},
 	notes: {
