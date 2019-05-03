@@ -12,7 +12,7 @@ import ActionButton from 'react-native-action-button';
 
 import {Alert, AppRegistry, Platform, TouchableOpacity} from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { PlantsResultsScreen } from './PlantsResultsScreen';
 
 import {SearchBar} from 'react-native-elements';
@@ -33,7 +33,7 @@ export class SlideMenu extends Component {
 
     render() {
         handleClick = (data) => {
-                    this.props.navigation.navigate(data);
+                this.props.navigation.navigate(data);
         }
         return (
           <View style={{flex:1, backgroundColor: 'transparent'}}>
@@ -46,23 +46,13 @@ export class SlideMenu extends Component {
             <SlidingUpPanel
                             allowDragging = {false}
                             ref={c => this._panel = c}>
-                           <View style={{
-                                     flex: 1,
-                                     justifyContent: 'flex-end',
-                                     alignItems: 'center',
-                                     height: 10,
-                                     marginBottom: 0,
-                                   }}>
-                                   <View style={{
-                                   flexDirection: 'row',
-                                   backgroundColor: 'transparent',
-                                   width: DeviceWidth,
-                                   justifyContent: 'center'}}>
+                           <View style={styles.fourSquareMenuContainer}>
+                                   <View style={styles.fourSquareMenuRow}>
                                        <View>
                                            <TouchableOpacity onPress={() => this.handleClick('Camera')}>
                                                <View style={[styles.fourSquare, {borderTopLeftRadius: 10}]}>
-                                               <Text> CAMTONO BEAN </Text>
-                                               <Icon name = "rocket" size = {DeviceWidth*scaleVal} color="#900" />
+                                                   <Text> CAMTONO BEAN </Text>
+                                                   <Icon name = "rocket" size = {DeviceWidth*scaleVal} color="#900" />
                                                </View>
                                            </TouchableOpacity>
                                            <TouchableOpacity onPress={() => this.handleClick("Plants")}>
@@ -88,16 +78,34 @@ export class SlideMenu extends Component {
 }
 
 export class PlantsScreen extends Component {
+
     static navigationOptions = {
         headerStyle:{
             backgroundColor: 'transparent',
             zIndex: 100,
         },
     };
+
+    constructor(props){
+        super(props)
+        this.state = {
+            liked: false
+        }
+    }
+
+
+    toggleLike = (id) => {
+        this.setState(state => ({liked: !state.liked}));
+    }
+
     //When uses presses a plant, navigates them to each plant's result screen
     handleClick = (item) => {
         this.props.navigation.navigate('PlantsResults', {item});
         //this.props.navigation.navigate('Home');
+    }
+
+    handleClickSquare = (data) => {
+                this.props.navigation.navigate(data);
     }
 
     render() {
@@ -116,6 +124,8 @@ export class PlantsScreen extends Component {
             { id: 18, name: 'SILVER', code: '#bdc3c7' }, { id: 19, name: 'ASBESTOS', code: '#7f8c8d' },
         ];
 
+
+
         return (
 
             <View style={{flex:1, backgroundColor: 'white'}}>
@@ -128,15 +138,62 @@ export class PlantsScreen extends Component {
             <TouchableOpacity onPress={() => this.handleClick(item)}>
                 <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                 <ImageBackground style ={styles.imageThumbnail} source={require('./Images/sunflower.jpg')} resizeMode='cover'>
-                        <Text style={styles.itemName}>{item.name}</Text>
-                        <Text style={styles.itemCode}>{item.code}</Text>
-
+                    <View style={{flex: 1, flexDirection: 'column'}}>
+                        <View style={{flex:1, alignItems: 'flex-end'}}>
+                            <TouchableOpacity onPress={() => this.toggleLike(item.id)}>
+                                <Image
+                                  source={this.state.liked ? require('./Images/heart.png') : require('./Images/heart-outline.png')}
+                                  style={{width: 40, height: 40}}
+                                  resizeMode="cover"
+                                />
+                             </TouchableOpacity>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={styles.itemName}>{item.name}</Text>
+                        </View>
+                    </View>
                 </ImageBackground>
                 </View>
             </TouchableOpacity>
 
             )}
             />
+
+                      <ActionButton onPress={() => this._panel.show() }
+                                buttonColor="rgba(0,66,14,1)"
+                                position="center"
+                                offsetY={0}
+                                />
+
+                        <SlidingUpPanel
+                                allowDragging = {false}
+                                ref={c => this._panel = c}>
+                               <View style={styles.fourSquareMenuContainer}>
+                                       <View style={styles.fourSquareMenuRow}>
+                                           <View>
+                                               <TouchableOpacity onPress={() => this.handleClickSquare('Camera')}>
+                                                   <View style={[styles.fourSquare, {borderTopLeftRadius: 10}]}>
+                                                       <Text> CAMTONO BEAN </Text>
+                                                       <Icon name = "rocket" size = {DeviceWidth*scaleVal} color="#900" />
+                                                   </View>
+                                               </TouchableOpacity>
+                                               <TouchableOpacity onPress={() => this.handleClickSquare("Plants")}>
+                                                   <View style={[styles.fourSquare, {borderBottomLeftRadius: 10}]}>
+                                                   </View>
+                                               </TouchableOpacity>
+                                           </View>
+                                           <View>
+                                               <TouchableOpacity onPress={() => this.handleClickSquare('Plants')}>
+                                                   <View style={[styles.fourSquare, {marginLeft: 1}, {borderTopRightRadius: 10}]} />
+                                               </TouchableOpacity>
+                                               <TouchableOpacity onPress={() => this.handleClickSquare('Plants')}>
+                                                   <View style={[styles.fourSquare, {marginLeft: 1}, {borderBottomRightRadius: 10}]} />
+                                               </TouchableOpacity>
+                                           </View>
+                                       </View>
+                                   </View>
+                            </SlidingUpPanel>
+
             </View>
         );
     }
@@ -144,6 +201,19 @@ export class PlantsScreen extends Component {
 
 
 const styles = StyleSheet.create({
+  fourSquareMenuContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: 10,
+    marginBottom: 0,
+  },
+  fourSquareMenuRow: {
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    width: DeviceWidth,
+    justifyContent: 'center'
+    },
   fourSquare: {
       width: DeviceWidth*scaleVal,
       height: DeviceWidth*scaleVal,

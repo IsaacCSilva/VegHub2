@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {ScrollView, Image, StyleSheet, WebView, Button, TouchableOpacity, View, Text} from 'react-native';
+import {Dimensions, ScrollView, Image, StyleSheet, WebView, Button, TouchableOpacity, View, Text} from 'react-native';
+import ActionButton from 'react-native-action-button';
+import SlidingUpPanel from 'rn-sliding-up-panel';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+const DeviceWidth = Dimensions.get('window').width;
+const scaleVal = 0.4;
 
 export class HomeScreen extends Component {
     constructor(props){
@@ -27,8 +33,16 @@ export class HomeScreen extends Component {
         }
     }
 
+    handleClick = (data) => {
+        this.props.navigation.navigate(data);
+    }
+
     render() {
+
+
+
         return (
+        <View>
             <ScrollView style={{backgroundColor:'white'}}>
                 <View style ={styles.col}>
                      <View style={styles.plantTitle}>
@@ -57,13 +71,76 @@ export class HomeScreen extends Component {
                  </View>
                  {this.renderWebView()}
 
+
+
             </ScrollView>
+
+            <ActionButton onPress={() => this._panel.show() }
+                 buttonColor="rgba(0,66,14,1)"
+                 position="center"
+                 offsetY={0}
+                 />
+
+             <SlidingUpPanel
+                     allowDragging = {false}
+                     ref={c => this._panel = c}>
+                    <View style={styles.fourSquareMenuContainer}>
+                            <View style={styles.fourSquareMenuRow}>
+                                <View>
+                                    <TouchableOpacity onPress={() => this.handleClick('Camera')}>
+                                        <View style={[styles.fourSquare, {borderTopLeftRadius: 10}]}>
+                                            <Text> CAMTONO BEAN </Text>
+                                            <Icon name = "rocket" size = {DeviceWidth*scaleVal} color="#900" />
+                                        </View>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.handleClick("Plants")}>
+                                        <View style={[styles.fourSquare, {borderBottomLeftRadius: 10}]}>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                                <View>
+                                    <TouchableOpacity onPress={() => this.handleClick('Plants')}>
+                                        <View style={[styles.fourSquare, {marginLeft: 1}, {borderTopRightRadius: 10}]} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.handleClick('Plants')}>
+                                        <View style={[styles.fourSquare, {marginLeft: 1}, {borderBottomRightRadius: 10}]} />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                 </SlidingUpPanel>
+             </View>
         );
     }
 }
 
 
 const styles = StyleSheet.create({
+    fourSquareMenuContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        height: 10,
+        marginBottom: 0,
+      },
+    fourSquareMenuRow: {
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+        width: DeviceWidth,
+        justifyContent: 'center'
+    },
+    fourSquare: {
+        width: DeviceWidth*scaleVal,
+        height: DeviceWidth*scaleVal,
+        marginBottom:1,
+        backgroundColor: 'white'
+    },
+    fourSquare1: {
+        width: DeviceWidth*scaleVal,
+        height: DeviceWidth*scaleVal,
+        marginBottom:1,
+        backgroundColor: 'blue'
+    },
     dailyTipBox: {
         height: 170,
         marginTop: 10,

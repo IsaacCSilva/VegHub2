@@ -24,13 +24,14 @@ import {LoginScreen} from './src/LoginScreen';
 import {PlantsResultsScreen} from './src/PlantsResultsScreen';
 import {InsertPlantForm, UpdatePlantForm} from './src/PlantForm';
 import {HomeScreen} from './src/HomeScreen';
+import {App as HeartTest} from './src/HeartTest';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HomeStack = createStackNavigator(
     {
         //Home: LoginScreen,
-        Home: WeatherScreen,
+        Home: HomeScreen,
         Menu: SlideMenu,
         //Home: LoginScreen,
         Camera: CameraScreen
@@ -75,7 +76,8 @@ const BottomTabNavigator = createBottomTabNavigator({
     Home: HomeStack,
     Plants: PlantStack,
    // Camera: CameraStack,
-    Profile: ProfileStack
+    Profile: ProfileStack,
+    Stats: ProfileStack
 
     },{
         navigationOptions: ({ navigation }) => ({
