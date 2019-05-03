@@ -24,13 +24,13 @@ var options = {
     }
 };
 
-//Default values
-var value ={
-    PlantName: "hello"
-}
 
-export class PlantForm extends Component {
 
+export class InsertPlantForm extends Component {
+
+
+
+  //USE NEW PLANT INSERT QUERY HERE
   onPress=()=> {
     // call getValue() to get the values of the form
     var value = this.refs.form.getValue();
@@ -41,6 +41,13 @@ export class PlantForm extends Component {
   }
 
   render() {
+    //GET THESE VALUES FROM THE GOOGLE VISION API JSON
+    const { navigation } = this.props;
+    const plant = navigation.getParam('plant', 'NO-ID');
+    const updateValue = {
+      PlantName: plant.name
+    };
+
     return (
       <View style={styles.container}>
         {/* display */}
@@ -49,6 +56,46 @@ export class PlantForm extends Component {
           type={Plant}
           options={options}
           value={value}
+        />
+        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
+
+
+export class UpdatePlantForm extends Component {
+
+  //USE UPDATE QUERY HERE INSTEAD.
+  //We can access the ID!
+  onPress=()=> {
+    // call getValue() to get the values of the form
+    var value = this.refs.form.getValue();
+    if (value) {
+      console.log(value);
+      console.log(value.PlantName);
+    }
+  }
+
+  render() {
+    const { navigation } = this.props;
+    const plant = navigation.getParam('plant', 'NO-ID');
+    const updateValue = {
+        PlantName: plant.name,
+        NickName: plant.code
+    };
+
+    return (
+      <View style={styles.container}>
+        {/* display */}
+        <Form
+          ref="form"
+          type={Plant}
+          options={options}
+          value={updateValue}
         />
         <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Save</Text>

@@ -56,6 +56,8 @@ export class WeatherScreen extends Component {
 		})
 	}
 	render() {
+
+
 		return (
 			<FlatList data={this.state.forecast.list}
 			style={{marginTop:20}}
@@ -65,8 +67,7 @@ export class WeatherScreen extends Component {
 			    flex: 1,
 			    flexDirection: 'column',
 			    justifyContent: 'center',
-			    backgroundColor:'black' }}>
-
+			    backgroundColor:'transparent' }}>
                     <ForecastCard detail={item}
                     location={this.state.forecast.city.name} />
 

@@ -41,7 +41,7 @@ export default class ForecastCard extends Component {
 					<Text style={styles.time}>{time}</Text>
 				</View>
 
-				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:20}} />
+				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
 
 				<View style={{flexDirection:'column', alignItems:'center'}}>
 					<Text style={styles.notes}>{this.props.detail.weather[0].description}</Text>
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
 	card:{
 		backgroundColor:'pink',
 		borderWidth:0,
-		margin: 1,
-		height: 300,
+		margin: 3,
+		height: 270,
 		borderRadius:20,
 	},
 	time:{

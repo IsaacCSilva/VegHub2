@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-
 import { ScrollView, Image, StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
-
 import {Alert, AppRegistry, Platform, TouchableOpacity} from 'react-native';
-
 export class PlantsResultsScreen extends Component {
+
+    constructor(props){
+        super(props);
+        this.editPlant = this.editPlant.bind(this);
+    }
     static navigationOptions = {
             headerStyle:{
                 backgroundColor: 'transparent',
@@ -12,14 +14,26 @@ export class PlantsResultsScreen extends Component {
             },
         };
 
+    editPlant(plant){
+        console.log(plant.id);
+        console.log(plant.name);
+        console.log(plant.code);
+        this.props.navigation.navigate('UpdatePlantForm', {plant});
+    }
+
+
     render() {
         const { navigation } = this.props;
-        const data = navigation.getParam('data', 'NO-ID');
+        const plant = navigation.getParam('item', 'NO-ID');
+
 
         return (
             <ScrollView style={{backgroundColor:'white'}}>
                 <View style ={styles.col}>
                      <View style={styles.pictureBox}>
+                        <TouchableOpacity onPress={() => this.editPlant(plant)}>
+                            <Text style={styles.editButton}> EDIT </Text>
+                        </TouchableOpacity>
                         <Image
                             source={require('./Images/plant-3.jpg')}
                             style={styles.picture}
@@ -28,7 +42,7 @@ export class PlantsResultsScreen extends Component {
 
                      <View style={styles.plantBox}>
                          <View style={styles.plantTitleBox}>
-                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> Michael the Ficus </Text>
+                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> {plant.name} </Text>
                             <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 15}, {color: 'gray'}, {fontSize: 20}]}> Garden Plant </Text>
                          </View>
                          <View style={[styles.plantTitleBox, {height: 110}, {backgroundColor: '#ccb29d'}]}>
@@ -46,6 +60,11 @@ export class PlantsResultsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    editButton: {
+        fontSize:20,
+        marginRight: 10,
+        textAlign: 'right',
+    },
     pictureBox: {
             height: 400,
             marginLeft: 10,

@@ -22,7 +22,7 @@ import {WeatherScreen} from './src/Weather';
 
 import {LoginScreen} from './src/LoginScreen';
 import {PlantsResultsScreen} from './src/PlantsResultsScreen';
-import {PlantForm} from './src/PlantForm';
+import {InsertPlantForm, UpdatePlantForm} from './src/PlantForm';
 import {HomeScreen} from './src/HomeScreen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -47,6 +47,7 @@ const HomeStack = createStackNavigator(
 const PlantStack = createStackNavigator({
         Plants: PlantsScreen,
         PlantsResults: PlantsResultsScreen,
+        UpdatePlantForm: UpdatePlantForm
 
     },
     {
@@ -54,7 +55,7 @@ const PlantStack = createStackNavigator({
 );
 
 const ProfileStack = createStackNavigator({
-        Profile: PlantForm
+        Profile: InsertPlantForm
     },
     {
     }
