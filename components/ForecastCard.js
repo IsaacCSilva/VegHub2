@@ -33,30 +33,32 @@ export default class ForecastCard extends Component {
 		time = hours + ':' + minutes.substr(-2) + status;
 
 		return (
-			<Card containerStyle={styles.card}>
+			<View style={styles.card}>
 				<Text style={styles.notes}>{this.props.location}</Text>
 
-				<View style={{flexDirection:'column', justifyContent:'space-between', alignItems:'flex-start'}}>
-					<Image style={{width:100, height:100}} source={{uri:"https://openweathermap.org/img/w/" + this.props.detail.weather[0].icon + ".png"}} />
+				<View style={{flexDirection:'column', justifyContent:'space-between', alignItems:'center'}}>
+					<Image style={{width:100, height:100, alignSelf: 'center'}} source={{uri:"https://openweathermap.org/img/w/" + this.props.detail.weather[0].icon + ".png"}} />
 					<Text style={styles.time}>{time}</Text>
 				</View>
 
 				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:20}} />
 
-				<View style={{flexDirection:'column', justifyContent:'flex-start'}}>
+				<View style={{flexDirection:'column', alignItems:'center'}}>
 					<Text style={styles.notes}>{this.props.detail.weather[0].description}</Text>
 					<Text style={styles.notes}>{Math.round( this.props.detail.main.temp * 10) / 10 }&#8457;</Text>
 				</View>
-			</Card>
+			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
 	card:{
-		backgroundColor:'rgba(56, 172, 236, 1)',
+		backgroundColor:'pink',
 		borderWidth:0,
-		borderRadius:20
+		margin: 1,
+		height: 300,
+		borderRadius:20,
 	},
 	time:{
 		fontSize:25,
@@ -65,6 +67,8 @@ const styles = StyleSheet.create({
 	notes: {
 		fontSize: 18,
 		color:'#fff',
-		textTransform:'capitalize'
+		textTransform:'capitalize',
+		alignSelf: 'center',
+		marginTop: 10
 	}
 });

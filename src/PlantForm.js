@@ -1,117 +1,83 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
-import { Button } from 'react-native-elements';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { Alert, AppRegistry, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
-import Input from '../components/Input';
+var t = require('tcomb-form-native');
+var Form = t.form.Form;
+// here we are: define your domain model
+var Plant = t.struct({
+  PlantName: t.String,              // a required string
+  NickName: t.maybe(t.String),  // an optional string
+  DateOfBirth: t.Date,               // a required number
+  rememberMe: t.Boolean        // a boolean
+});
 
-const api = user =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (user.email === 'hello@gmail.com') {
-        reject({ email: 'Email already use' });
-      } else {
-        resolve();
-      }
-    }, 3000);
-  });
+
+var options = {
+    fields:{
+        DateOfBirth:{
+            mode: 'date',
+            config:{
+                dialogMode: 'spinner',
+                defaultValueText: 'Select a date',
+            }
+        }
+    }
+};
+
+//Default values
+var value ={
+    PlantName: "hello"
+}
 
 export class PlantForm extends Component {
-  _handleSubmit = async (values, bag) => {
-    try {
-      await api(values);
-      Alert.alert('Welcome');
-    } catch (error) {
-      bag.setSubmitting(false);
-      bag.setErrors(error);
+
+  onPress=()=> {
+    // call getValue() to get the values of the form
+    var value = this.refs.form.getValue();
+    if (value) { // if validation fails, value will be null
+      console.log(value); // value here is an instance of Plant
+      console.log(value.PlantName);
     }
-  };
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Formik
-          initialValues={{ email: '', password: '', confirmPassword: '' }}
-          onSubmit={this._handleSubmit}
-          validationSchema={Yup.object().shape({
-            email: Yup.string()
-              .email('Not valid email')
-              .required('Email is required'),
-            password: Yup.string()
-              .min(6)
-              .required('Password is required'),
-            confirmPassword: Yup.string()
-              .oneOf(
-                [Yup.ref('password', null)],
-                'Confirm Password must matched Password',
-              )
-              .required('Confirm Password is required'),
-          })}
-          render={({
-            values,
-            handleSubmit,
-            setFieldValue,
-            errors,
-            touched,
-            setFieldTouched,
-            isValid,
-            isSubmitting,
-          }) => (
-            <React.Fragment>
-              <Input
-                label="Email"
-                autoCapitalize="none"
-                value={values.email}
-                onChange={setFieldValue}
-                onTouch={setFieldTouched}
-                name="email"
-                error={touched.email && errors.email}
-              />
-              <Input
-                label="Password"
-                autoCapitalize="none"
-                secureTextEntry
-                value={values.password}
-                onChange={setFieldValue}
-                onTouch={setFieldTouched}
-                name="password"
-                error={touched.password && errors.password}
-              />
-              <Input
-                label="Confirm Password"
-                autoCapitalize="none"
-                secureTextEntry
-                value={values.confirmPassword}
-                onChange={setFieldValue}
-                onTouch={setFieldTouched}
-                name="confirmPassword"
-                error={touched.confirmPassword && errors.confirmPassword}
-              />
-              <Button
-                backgroundColor="blue"
-                buttonStyle={styles.button}
-                title="Submit"
-                onPress={handleSubmit}
-                disabled={!isValid || isSubmitting}
-                loading={isSubmitting}
-              />
-            </React.Fragment>
-          )}
+        {/* display */}
+        <Form
+          ref="form"
+          type={Plant}
+          options={options}
+          value={value}
         />
+        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableHighlight>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: '#ffffff',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
   },
   button: {
-    marginTop: 20,
-    width: '100%',
-  },
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  }
 });

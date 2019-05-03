@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import { FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import ForecastCard from '.././components/ForecastCard';
 import { API_KEY } from '.././utils/WeatherAPIKey';
+
+import { FlatGrid } from 'react-native-super-grid';
 
 
 
@@ -55,7 +57,23 @@ export class WeatherScreen extends Component {
 	}
 	render() {
 		return (
-			<FlatList data={this.state.forecast.list} style={{marginTop:20}} keyExtractor={item => item.dt_txt} renderItem={({item}) => <ForecastCard detail={item} location={this.state.forecast.city.name} />} />
+			<FlatList data={this.state.forecast.list}
+			style={{marginTop:20}}
+			keyExtractor={item => item.dt_txt}
+			renderItem={({item}) =>
+			    <View style={{
+			    flex: 1,
+			    flexDirection: 'column',
+			    justifyContent: 'center',
+			    backgroundColor:'black' }}>
+
+                    <ForecastCard detail={item}
+                    location={this.state.forecast.city.name} />
+
+                </View>
+                }
+               numColumns={3}
+            />
 		);
 	}
 

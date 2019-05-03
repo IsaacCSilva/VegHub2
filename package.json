@@ -21,6 +21,7 @@
     "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.3.2",
     "rn-sliding-up-panel": "^2.2.0",
+    "tcomb-form-native": "^0.6.20",
     "yup": "^0.27.0"
   },
   "devDependencies": {
@@ -34,8 +35,8 @@
   "jest": {
     "preset": "react-native"
   },
-  "rnpm":{
-    "assets":[
+  "rnpm": {
+    "assets": [
       "./src/Assets/Fonts/"
     ]
   }
