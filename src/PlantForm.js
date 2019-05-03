@@ -28,24 +28,24 @@ var options = {
 
 export class InsertPlantForm extends Component {
 
-
-
   //USE NEW PLANT INSERT QUERY HERE
   onPress=()=> {
     // call getValue() to get the values of the form
+
     var value = this.refs.form.getValue();
     if (value) { // if validation fails, value will be null
       console.log(value); // value here is an instance of Plant
       console.log(value.PlantName);
     }
+
   }
 
   render() {
     //GET THESE VALUES FROM THE GOOGLE VISION API JSON
     const { navigation } = this.props;
     const plant = navigation.getParam('plant', 'NO-ID');
-    const updateValue = {
-      PlantName: plant.name
+    const insertValue = {
+      PlantName: "Google Vision"
     };
 
     return (
@@ -55,7 +55,7 @@ export class InsertPlantForm extends Component {
           ref="form"
           type={Plant}
           options={options}
-          value={value}
+          value={insertValue}
         />
         <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Save</Text>
