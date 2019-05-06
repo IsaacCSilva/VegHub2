@@ -32,7 +32,7 @@ var options = {
 
 export class NewUserForm extends Component {
 
-  //USE NEW User INSERT QUERY HERE
+  //DATABASE: CREATE NEW USER
   onPress=()=> {
     // call getValue() to get the values of the form
     var value = this.refs.form.getValue();

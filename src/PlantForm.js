@@ -44,6 +44,7 @@ export class InsertPlantForm extends Component {
     //GET THESE VALUES FROM THE GOOGLE VISION API JSON
     const { navigation } = this.props;
     const plant = navigation.getParam('plant', 'NO-ID');
+    //GET THESE VALUES FROM THE GOOGLE VISION API JSON
     const insertValue = {
       PlantName: "Google Vision"
     };

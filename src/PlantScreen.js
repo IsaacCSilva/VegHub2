@@ -103,6 +103,7 @@ export class PlantsScreen extends Component {
         }
     }
 
+    //DATABASE: GET ALL PLANTS : LIST OF PLANTS
     componentDidMount(){
         this.setState({items:
             [
@@ -120,7 +121,7 @@ export class PlantsScreen extends Component {
         });
     }
 
-    //DATABASE: !liked
+    //DATABASE: trigger !liked
     toggleLike = (item) => {
         let temp = this.state.items;
         temp[item.id].liked = !temp[item.id].liked;
@@ -134,7 +135,7 @@ export class PlantsScreen extends Component {
     }
 
     handleClickSquare = (data) => {
-                this.props.navigation.navigate(data);
+            this.props.navigation.navigate(data);
     }
 
     render() {

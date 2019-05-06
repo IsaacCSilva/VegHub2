@@ -40,7 +40,7 @@ export class PlantsResultsScreen extends Component {
             <ScrollView style={{backgroundColor:'white'}}>
                 <View style ={styles.col}>
                     <View style={{flex: 1}}>
-                        <TouchableOpacity onPress={() => this.editPlant(plant)}>
+                        <TouchableOpacity onPress={() => this.editPlant(this.state.plant)}>
                             <Text style={styles.editButton}> EDIT </Text>
                         </TouchableOpacity>
                      </View>
