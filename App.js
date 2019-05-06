@@ -32,34 +32,8 @@ import {App as HeartTest} from './src/HeartTest';
 import { NewUserForm, UpdateUserForm } from './src/UserForm';
 import { ProfileScreen } from './src/ProfileScreen';
 import {StatsScreen} from './src/StatsScreen';
-
+import {SignInScreen} from './src/SignInScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-class SignInScreen extends Component {
-  static navigationOptions = {
-    title: 'Please sign in',
-  };
-
-  /* I assume that onPress, call a function that verifies with mongo the user details.
-  If it's correct, THEN it'll call _signInAsync. There is also a signOutAsync function in the example
-  https://snack.expo.io/@react-navigation/auth-flow-v3
-
-  there is a getUserID() query Alec designed.
-  */
-
-  render() {
-    return (
-      <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
-        <Button title="Sign in!" onPress={this._signInAsync} />
-      </View>
-    );
-  }
-
-  _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('App');
-  };
-}
 
 const HomeStack = createStackNavigator(
     {

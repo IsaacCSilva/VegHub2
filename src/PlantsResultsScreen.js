@@ -6,6 +6,17 @@ export class PlantsResultsScreen extends Component {
     constructor(props){
         super(props);
         this.editPlant = this.editPlant.bind(this);
+        state:{
+            plant: ''
+        }
+    }
+
+    componentWillMount(){
+        const { navigation } = this.props;
+        const thePlant = navigation.getParam('item', 'NO-ID');
+        this.setState({
+            plant: thePlant
+        });
     }
     static navigationOptions = {
             headerStyle:{
@@ -23,8 +34,6 @@ export class PlantsResultsScreen extends Component {
 
 
     render() {
-        const { navigation } = this.props;
-        const plant = navigation.getParam('item', 'NO-ID');
 
 
         return (
@@ -44,7 +53,7 @@ export class PlantsResultsScreen extends Component {
 
                      <View style={styles.plantBox}>
                          <View style={styles.plantTitleBox}>
-                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> {plant.name} </Text>
+                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> {this.state.plant.name} </Text>
                             <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 15}, {color: 'gray'}, {fontSize: 20}]}> Garden Plant </Text>
                          </View>
                          <View style={[styles.plantTitleBox, {height: 110}, {backgroundColor: '#ccb29d'}]}>

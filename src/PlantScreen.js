@@ -35,6 +35,12 @@ export class SlideMenu extends Component {
         handleClick = (data) => {
                 this.props.navigation.navigate(data);
         }
+
+        _signOutAsync = async() => {
+            await AsyncStorage.remove('userToken');
+            this.props.navigation.navigate('Auth');
+        };
+
         return (
           <View style={{flex:1, backgroundColor: 'transparent'}}>
           <ActionButton onPress={() => this._panel.show() }
@@ -64,8 +70,8 @@ export class SlideMenu extends Component {
                                            <TouchableOpacity onPress={() => this.handleClick('Plants')}>
                                                <View style={[styles.fourSquare, {marginLeft: 1}, {borderTopRightRadius: 10}]} />
                                            </TouchableOpacity>
-                                           <TouchableOpacity onPress={() => this.handleClick('Plants')}>
-                                               <View style={[styles.fourSquare, {marginLeft: 1}, {borderBottomRightRadius: 10}]} />
+                                           <TouchableOpacity onPress={() => this._signOutAsync()}>
+                                               <View style={[styles.fourSquare, {marginLeft: 1}, {backgroundColor: 'red'}, {borderBottomRightRadius: 10}]} />
                                            </TouchableOpacity>
                                        </View>
                                    </View>

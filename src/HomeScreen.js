@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, ScrollView, Image, StyleSheet, WebView, Button, TouchableOpacity, View, Text} from 'react-native';
+import {AsyncStorage, Dimensions, ScrollView, Image, StyleSheet, WebView, Button, TouchableOpacity, View, Text} from 'react-native';
 import ActionButton from 'react-native-action-button';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -54,9 +54,14 @@ export class HomeScreen extends Component {
         this.props.navigation.navigate(data);
     }
 
+    signOutAsync = async() => {
+        console.log("loggin you out");
+        console.log("here: ");
+        await AsyncStorage.removeItem('userToken');
+        this.props.navigation.navigate('Auth');
+    };
+
     render() {
-
-
 
         return (
         <View>
@@ -123,8 +128,8 @@ export class HomeScreen extends Component {
                                     <TouchableOpacity onPress={() => this.handleClick('Plants')}>
                                         <View style={[styles.fourSquare, {marginLeft: 1}, {borderTopRightRadius: 10}]} />
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.handleClick('Plants')}>
-                                        <View style={[styles.fourSquare, {marginLeft: 1}, {borderBottomRightRadius: 10}]} />
+                                    <TouchableOpacity onPress={() => this.signOutAsync()}>
+                                        <View style={[styles.fourSquare, {marginLeft: 1}, {backgroundColor: 'red'}, {borderBottomRightRadius: 10}]} />
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -214,12 +219,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     dateBox: {
-        height: 100,
-        marginTop: 10,
+        height: 120,
+        marginBottom: 10,
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'gray'
     },
     col:{
         flex: 1,
@@ -244,7 +249,7 @@ const styles = StyleSheet.create({
     dateText: {
         fontFamily: 'Leixo',
         fontSize: 50,
-        color: 'green',
+        color: 'white',
     },
     plantSubTitle: {
         fontFamily: 'Roboto',
