@@ -7,12 +7,29 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const DeviceWidth = Dimensions.get('window').width;
 const scaleVal = 0.4;
 
+var months =["Jan", "Feb", "March",
+             "April", "May", "June",
+             "July", "August", "September",
+             "October", "November", "December"];
+
 export class HomeScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
-            check : false
+            check : false,
+            date: ''
         }
+    }
+
+    componentDidMount(){
+        var that = this;
+        var date = new Date().getDate(); //Current day
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+        that.setState({
+          date:
+            months[month - 1] + ' ' + date + 'th, ' + year,
+        });
     }
 
     renderWebView(){
@@ -58,9 +75,13 @@ export class HomeScreen extends Component {
                      </View>
 
                      <View style={styles.plantBox}>
+                         <Text style ={styles.headerText}> {"Today's Date"} </Text>
+                          <View style={styles.dateBox}>
+                             <Text style ={styles.dateText}> {this.state.date} </Text>
+                          </View>
                          <Text style ={styles.headerText}> Weather </Text>
                          <View style={styles.weatherBox}>
-                            <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> Michael the Ficus </Text>
+                            <Text style ={[styles.plantTitle, {fontWeight: 'bold'}]}> Michael the Ficus </Text>
                          </View>
                          <Text style ={styles.headerText}> Daily Tip </Text>
                          <View style={styles.dailyTipBox}>
@@ -165,7 +186,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     pictureBox: {
-            height: 300,
+            height: 200,
             marginLeft: 10,
             marginRight: 10,
             marginTop: 10,
@@ -187,10 +208,18 @@ const styles = StyleSheet.create({
             backgroundColor: 'white'
         },
     weatherBox: {
-                height: 180,
-                marginTop: 10,
-                borderRadius: 8,
-                backgroundColor: 'white'
+        height: 180,
+        marginTop: 10,
+        borderRadius: 8,
+        backgroundColor: 'white'
+    },
+    dateBox: {
+        height: 100,
+        marginTop: 10,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white'
     },
     col:{
         flex: 1,
@@ -209,10 +238,13 @@ const styles = StyleSheet.create({
     plantTitle: {
         fontFamily: 'Leixo',
         fontSize: 30,
-        color: 'black',
         textAlign:'center',
         color: 'green',
-
+    },
+    dateText: {
+        fontFamily: 'Leixo',
+        fontSize: 50,
+        color: 'green',
     },
     plantSubTitle: {
         fontFamily: 'Roboto',

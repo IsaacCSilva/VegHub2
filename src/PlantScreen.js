@@ -80,6 +80,10 @@ export class SlideMenu extends Component {
 export class PlantsScreen extends Component {
 
     static navigationOptions = {
+        title: 'Your Plants',
+        headerTitleStyle:{
+            color: 'black',
+        },
         headerStyle:{
             backgroundColor: 'transparent',
             zIndex: 100,

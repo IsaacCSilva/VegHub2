@@ -31,6 +31,7 @@ import {HomeScreen} from './src/HomeScreen';
 import {App as HeartTest} from './src/HeartTest';
 import { NewUserForm, UpdateUserForm } from './src/UserForm';
 import { ProfileScreen } from './src/ProfileScreen';
+import {StatsScreen} from './src/StatsScreen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -95,6 +96,18 @@ const ProfileStack = createStackNavigator({
     }
 );
 
+const StatsStack = createStackNavigator({
+        Statistics: StatsScreen,
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: 'transparent',
+            },
+        }
+    }
+);
+
 const AuthStack = createStackNavigator({
         SignIn: SignInScreen,
         //Forgot Password:
@@ -140,7 +153,7 @@ const BottomTabNavigator = createBottomTabNavigator({
     Plants: PlantStack,
    // Camera: CameraStack,
     Profile: ProfileStack,
-    Stats: ProfileStack
+    Stats: StatsStack,
 
     },{
         navigationOptions: ({ navigation }) => ({

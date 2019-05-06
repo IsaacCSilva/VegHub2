@@ -8,11 +8,15 @@ export class ProfileScreen extends Component {
         this.editUser = this.editUser.bind(this);
     }
     static navigationOptions = {
-            headerStyle:{
-                backgroundColor: 'transparent',
-                zIndex: 100,
-            },
-        };
+        title: 'Your Profile',
+        headerTitleStyle:{
+            color: 'black',
+        },
+        headerStyle:{
+            backgroundColor: 'transparent',
+            zIndex: 100,
+        },
+    };
 
     editUser(user){
         console.log(user.name);
@@ -89,26 +93,20 @@ const styles = StyleSheet.create({
     circleImageBox: {
         height: 200,
         width: 200,
-        borderRadius: 8,
         overflow: 'hidden',
-        backgroundColor: 'red',
         borderRadius: 200/2
     },
     pictureBox: {
-            flex:1,
-            flexDirection:'column',
-            height: 300,
-            marginLeft: 10,
-            marginRight: 10,
-            marginTop: 10,
-            borderRadius: 8,
-            alignItems: 'center',
-            backgroundColor: 'steelblue'
-        },
+        height: 300,
+        overflow: 'hidden',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#d3d3d3'
+    },
     userDetailsBox: {
         alignItems:'center',
         justifyContent:'center',
-        height: 70,
+        height: 50,
         width: 120,
         borderLeftWidth: 1,
         borderLeftColor: 'white'
@@ -136,9 +134,7 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
     },
     row:{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
+        flexDirection: 'row',
     },
     picture: {
             flex:1,

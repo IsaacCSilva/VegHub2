@@ -5,7 +5,8 @@ var t = require('tcomb-form-native');
 var Form = t.form.Form;
 // here we are: define your domain model
 var User = t.struct({
-  UserName: t.String,              // a required string
+  FirstName: t.String,
+  LastName: t.String,
   Email: t.String,
   Password: t.String,
   AboutMe: t.String,
@@ -21,7 +22,8 @@ var options = {
             secureTextEntry: true
         },
         AboutMe:{
-            numberOfLines: 5
+            multiline: true,
+            numberOfLines: 4
         }
     }
 };
