@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
 import {
+Button,
+ActivityIndicator,
+AsyncStorage,
+StatusBar,
 AppRegistry,
 View,
 TouchableOpacity }
@@ -10,13 +14,13 @@ import {
 createBottomTabNavigator,
 createStackNavigator,
 createAppContainer,
-createDrawerNavigator, } from 'react-navigation';
+createDrawerNavigator,
+createSwitchNavigator } from 'react-navigation';
 
 import {
 PlantsScreen,
-BagScreen,
 SlideMenu
-} from './src/MyScreens';
+} from './src/PlantScreen';
 import {CameraScreen} from './src/CameraScreen';
 import {WeatherScreen} from './src/Weather';
 
@@ -25,8 +29,36 @@ import {PlantsResultsScreen} from './src/PlantsResultsScreen';
 import {InsertPlantForm, UpdatePlantForm} from './src/PlantForm';
 import {HomeScreen} from './src/HomeScreen';
 import {App as HeartTest} from './src/HeartTest';
+import { NewUserForm, UpdateUserForm } from './src/UserForm';
+import { ProfileScreen } from './src/ProfileScreen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+class SignInScreen extends Component {
+  static navigationOptions = {
+    title: 'Please sign in',
+  };
+
+  /* I assume that onPress, call a function that verifies with mongo the user details.
+  If it's correct, THEN it'll call _signInAsync. There is also a signOutAsync function in the example
+  https://snack.expo.io/@react-navigation/auth-flow-v3
+
+  there is a getUserID() query Alec designed.
+  */
+
+  render() {
+    return (
+      <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+        <Button title="Sign in!" onPress={this._signInAsync} />
+      </View>
+    );
+  }
+
+  _signInAsync = async () => {
+    await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('App');
+  };
+}
 
 const HomeStack = createStackNavigator(
     {
@@ -56,12 +88,43 @@ const PlantStack = createStackNavigator({
 );
 
 const ProfileStack = createStackNavigator({
-        Profile: InsertPlantForm
+        Profile: ProfileScreen,
+        EditProfile: UpdateUserForm
     },
     {
     }
 );
 
+const AuthStack = createStackNavigator({
+        SignIn: SignInScreen,
+        //Forgot Password:
+});
+
+class AuthLoadingScreen extends Component {
+  constructor() {
+    super();
+    this._bootstrapAsync();
+  }
+
+  // Fetch the token from storage then navigate to our appropriate place
+  _bootstrapAsync = async () => {
+    const userToken = await AsyncStorage.getItem('userToken');
+
+    // This will switch to the App screen or Auth screen and this loading
+    // screen will be unmounted and thrown away.
+    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+  };
+
+  // Render any loading content that you like here
+  render() {
+    return (
+      <View style={{flex:1, alignItems: 'center', justifyContent:'center'}}>
+        <ActivityIndicator />
+        <StatusBar barStyle="default" />
+      </View>
+    );
+  }
+}
 
 const DrawerNavigator = createDrawerNavigator({
     Home: HomeStack,
@@ -96,6 +159,7 @@ const BottomTabNavigator = createBottomTabNavigator({
     }
 });
 
+/*
 const AppStack = createStackNavigator({
     Main: BottomTabNavigator,
     Drawer: DrawerNavigator,
@@ -133,7 +197,24 @@ export default class Main extends Component {
     );
   }
 }
+
 AppRegistry.registerComponent('NewNavigation', () => Main);
-//NECESSARY FOR REACT NATIVE 3
-const App = createAppContainer(AppStack);
+*/
+
+//disables the warnings
+console.disableYellowBox=true;
+export default createAppContainer(createSwitchNavigator(
+{
+    AuthLoading: AuthLoadingScreen,
+    App: BottomTabNavigator,
+    Auth: AuthStack,
+},
+{
+    initialRouteName: 'AuthLoading',
+}
+));
+
+
+
+
 

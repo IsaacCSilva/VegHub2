@@ -89,13 +89,32 @@ export class PlantsScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
-            liked: false
+            items: []
         }
     }
 
+    componentDidMount(){
+        this.setState({items:
+            [
+                { id: 0, name: 'TURQUOISE', code: '#1abc9c', liked: true }, { id: 1, name: 'EMERALD', code: '#2ecc71',liked: false },
+                { id: 2, name: 'PETER RIVER', code: '#3498db',liked: false }, { id: 3,name: 'AMETHYST', code: '#9b59b6',liked: false },
+                { id: 4, name: 'WET ASPHALT', code: '#34495e',liked: false }, { id: 5, name: 'GREEN SEA', code: '#16a085',liked: false },
+                { id: 6, name: 'NEPHRITIS', code: '#27ae60',liked: false }, { id: 7, name: 'BELIZE HOLE', code: '#2980b9',liked: false },
+                { id: 8, name: 'WISTERIA', code: '#8e44ad',liked: false }, { id: 9, name: 'MIDNIGHT BLUE', code: '#2c3e50',liked: false },
+                { id: 10, name: 'SUN FLOWER', code: '#f1c40f',liked: false }, { id: 11, name: 'CARROT', code: '#e67e22',liked: false },
+                { id: 12, name: 'ALIZARIN', code: '#e74c3c',liked: false }, { id: 13, name: 'CLOUDS', code: '#ecf0f1',liked: false },
+                { id: 14, name: 'CONCRETE', code: '#95a5a6',liked: false }, { id: 15, name: 'ORANGE', code: '#f39c12',liked: false },
+                { id: 16, name: 'PUMPKIN', code: '#d35400',liked: false }, { id: 17, name: 'POMEGRANATE', code: '#c0392b',liked: false },
+                { id: 18, name: 'SILVER', code: '#bdc3c7',liked: false }, { id: 19, name: 'ASBESTOS', code: '#7f8c8d',liked: false },
+            ]
+        });
+    }
 
-    toggleLike = (id) => {
-        this.setState(state => ({liked: !state.liked}));
+    //DATABASE: !liked
+    toggleLike = (item) => {
+        let temp = this.state.items;
+        temp[item.id].liked = !temp[item.id].liked;
+        this.setState({items: temp});
     }
 
     //When uses presses a plant, navigates them to each plant's result screen
@@ -111,27 +130,15 @@ export class PlantsScreen extends Component {
     render() {
         //Need MongoDB Query to get this shit
         //List of JSON Objects
-        const items = [
-            { id: 0, name: 'TURQUOISE', code: '#1abc9c' }, { id: 1, name: 'EMERALD', code: '#2ecc71' },
-            { id: 2, name: 'PETER RIVER', code: '#3498db' }, { id: 3,name: 'AMETHYST', code: '#9b59b6' },
-            { id: 4, name: 'WET ASPHALT', code: '#34495e' }, { id: 5, name: 'GREEN SEA', code: '#16a085' },
-            { id: 6, name: 'NEPHRITIS', code: '#27ae60' }, { id: 7, name: 'BELIZE HOLE', code: '#2980b9' },
-            { id: 8, name: 'WISTERIA', code: '#8e44ad' }, { id: 9, name: 'MIDNIGHT BLUE', code: '#2c3e50' },
-            { id: 10, name: 'SUN FLOWER', code: '#f1c40f' }, { id: 11, name: 'CARROT', code: '#e67e22' },
-            { id: 12, name: 'ALIZARIN', code: '#e74c3c' }, { id: 13, name: 'CLOUDS', code: '#ecf0f1' },
-            { id: 14, name: 'CONCRETE', code: '#95a5a6' }, { id: 15, name: 'ORANGE', code: '#f39c12' },
-            { id: 16, name: 'PUMPKIN', code: '#d35400' }, { id: 17, name: 'POMEGRANATE', code: '#c0392b' },
-            { id: 18, name: 'SILVER', code: '#bdc3c7' }, { id: 19, name: 'ASBESTOS', code: '#7f8c8d' },
-        ];
 
-
+        //do item.liked
 
         return (
 
             <View style={{flex:1, backgroundColor: 'white'}}>
             <FlatGrid
             itemDimension={130}
-            items={items}
+            items={this.state.items}
             style={styles.gridView}
             renderItem={({ item, index }) => (
 
@@ -140,13 +147,13 @@ export class PlantsScreen extends Component {
                 <ImageBackground style ={styles.imageThumbnail} source={require('./Images/sunflower.jpg')} resizeMode='cover'>
                     <View style={{flex: 1, flexDirection: 'column'}}>
                         <View style={{flex:1, alignItems: 'flex-end'}}>
-                            <TouchableOpacity onPress={() => this.toggleLike(item.id)}>
+                            <TouchableOpacity onPress={() => this.toggleLike(item)}>
                                 <Image
-                                  source={this.state.liked ? require('./Images/heart.png') : require('./Images/heart-outline.png')}
+                                  source={item.liked ? require('./Images/heart.png') : require('./Images/heart-outline.png')}
                                   style={{width: 40, height: 40}}
                                   resizeMode="cover"
                                 />
-                             </TouchableOpacity>
+                            </TouchableOpacity>
                         </View>
                         <View style={{flex:1}}>
                             <Text style={styles.itemName}>{item.name}</Text>

@@ -1,117 +1,110 @@
 import React, {Component} from 'react';
-import { Alert, AppRegistry, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { ScrollView ,KeyboardAvoidingView, Alert, AppRegistry, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
 var t = require('tcomb-form-native');
 var Form = t.form.Form;
 // here we are: define your domain model
-var Plant = t.struct({
-  PlantName: t.String,              // a required string
-  NickName: t.maybe(t.String),  // an optional string
-  DateOfBirth: t.Date,               // a required number
-  rememberMe: t.Boolean        // a boolean
+var User = t.struct({
+  UserName: t.String,              // a required string
+  Email: t.String,
+  Password: t.String,
+  AboutMe: t.String,
 });
 
 
 var options = {
     fields:{
-        DateOfBirth:{
-            mode: 'date',
-            config:{
-                dialogMode: 'spinner',
-                defaultValueText: 'Select a date',
-            }
+        Email: {
+            error: "Insert a valid email"
+        },
+        Password:{
+            secureTextEntry: true
+        },
+        AboutMe:{
+            numberOfLines: 5
         }
     }
 };
 
 
 
-export class InsertPlantForm extends Component {
+export class NewUserForm extends Component {
 
-  //USE NEW PLANT INSERT QUERY HERE
+  //USE NEW User INSERT QUERY HERE
   onPress=()=> {
     // call getValue() to get the values of the form
-
     var value = this.refs.form.getValue();
     if (value) { // if validation fails, value will be null
-      console.log(value); // value here is an instance of Plant
-      console.log(value.PlantName);
+      console.log(value); // value here is an instance of User
+      console.log(value.UserName);
     }
 
   }
 
   render() {
-    //GET THESE VALUES FROM THE GOOGLE VISION API JSON
     const { navigation } = this.props;
-    const plant = navigation.getParam('plant', 'NO-ID');
-    const insertValue = {
-      PlantName: "Google Vision"
-    };
 
     return (
+      <ScrollView>
       <View style={styles.container}>
-        {/* display */}
+
         <Form
           ref="form"
-          type={Plant}
+          type={User}
           options={options}
-          value={insertValue}
         />
         <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableHighlight>
+        <View style={{height: 60}}/>
       </View>
+      </ScrollView>
     );
   }
 }
 
+export class UpdateUserForm extends Component {
 
-
-export class UpdatePlantForm extends Component {
-
-  //USE UPDATE QUERY HERE INSTEAD.
-  //We can access the ID!
+  //USE NEW User INSERT QUERY HERE
   onPress=()=> {
     // call getValue() to get the values of the form
     var value = this.refs.form.getValue();
-    if (value) {
-      console.log(value);
-      console.log(value.PlantName);
+    if (value) { // if validation fails, value will be null
+      console.log(value); // value here is an instance of User
+      console.log(value.UserName);
     }
-  }
-
-  //delete plant
-  onPressKill=()=>{
 
   }
 
   render() {
     const { navigation } = this.props;
-    const plant = navigation.getParam('plant', 'NO-ID');
+    const user = navigation.getParam('user', 'NO-ID');
+    //const user = {name: "UpdateUserForm"};
     const updateValue = {
-        PlantName: plant.name,
-        NickName: plant.code
+        UserName: user.name,
     };
 
     return (
+      <ScrollView>
       <View style={styles.container}>
-        {/* display */}
+
         <Form
           ref="form"
-          type={Plant}
+          type={User}
           options={options}
           value={updateValue}
         />
         <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={[styles.button,{backgroundColor:'red'},{borderColor:'red'}]} onPress={this.onPressKill}>
-                  <Text style={styles.buttonText}>KILL PLANT</Text>
-        </TouchableHighlight>
+        <View style={{height: 60}}/>
       </View>
+      </ScrollView>
     );
   }
 }
+
+
 
 var styles = StyleSheet.create({
   container: {

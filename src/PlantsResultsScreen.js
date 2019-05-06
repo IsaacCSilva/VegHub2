@@ -30,10 +30,12 @@ export class PlantsResultsScreen extends Component {
         return (
             <ScrollView style={{backgroundColor:'white'}}>
                 <View style ={styles.col}>
-                     <View style={styles.pictureBox}>
+                    <View style={{flex: 1}}>
                         <TouchableOpacity onPress={() => this.editPlant(plant)}>
                             <Text style={styles.editButton}> EDIT </Text>
                         </TouchableOpacity>
+                     </View>
+                     <View style={styles.pictureBox}>
                         <Image
                             source={require('./Images/plant-3.jpg')}
                             style={styles.picture}

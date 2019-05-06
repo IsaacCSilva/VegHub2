@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {TextInput, Text, View, ImageBackground, Image, TouchableOpacity} from "react-native";
-import {SlideMenu} from './MyScreens';
+import {SlideMenu} from './PlantScreen';
 
 export class LoginScreen extends Component {
 
