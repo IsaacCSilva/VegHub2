@@ -3,7 +3,8 @@ import {ImageBackground, AsyncStorage, Dimensions, ScrollView, Image, StyleSheet
 import ActionButton from 'react-native-action-button';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {getDailyTip} from './DailyTips'
+import {getDailyTip} from './DailyTips';
+import {WeatherScreen} from './Weather'
 
 const DeviceWidth = Dimensions.get('window').width;
 const scaleVal = 0.4;
@@ -89,8 +90,8 @@ export class HomeScreen extends Component {
 
                      <View style={styles.plantBox}>
                          <Text style ={styles.headerText}> Weather </Text>
-                         <View style={styles.weatherBox}>
-                            <Text style ={[styles.plantTitle, {fontWeight: 'bold'}]}> Michael the Ficus </Text>
+                         <View style={styles.weatherBox} >
+                            <WeatherScreen />
                          </View>
                          <Text style ={styles.headerText}> Daily Tip </Text>
                          <View style={styles.dailyTipBox}>
@@ -100,8 +101,6 @@ export class HomeScreen extends Component {
 
                  </View>
                  {this.renderWebView()}
-
-
 
             </ScrollView>
 
@@ -223,9 +222,10 @@ const styles = StyleSheet.create({
             backgroundColor: 'white'
         },
     weatherBox: {
-        height: 180,
+        height: 270,
         marginTop: 10,
         borderRadius: 8,
+        paddingVertical: 0,
         backgroundColor: 'white'
     },
     dateBox: {

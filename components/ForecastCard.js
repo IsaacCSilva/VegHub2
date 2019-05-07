@@ -37,38 +37,38 @@ export default class ForecastCard extends Component {
 				<Text style={styles.notes}>{this.props.location}</Text>
 
 				<View style={{flexDirection:'column', justifyContent:'space-between', alignItems:'center'}}>
-					<Image style={{width:100, height:100, alignSelf: 'center'}} source={{uri:"https://openweathermap.org/img/w/" + this.props.detail.weather[0].icon + ".png"}} />
+					<Image style={{width:70, height:70, alignSelf: 'center'}} source={{uri:"https://openweathermap.org/img/w/" + this.props.detail.weather[0].icon + ".png"}} />
 					<Text style={styles.time}>{time}</Text>
 				</View>
 
-				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
-
 				<View style={{flexDirection:'column', alignItems:'center'}}>
-					<Text style={styles.notes}>{this.props.detail.weather[0].description}</Text>
+				    <Text style={styles.notes}>{this.props.detail.dt_txt.substr(0,10)}</Text>
 					<Text style={styles.notes}>{Math.round( this.props.detail.main.temp * 10) / 10 }&#8457;</Text>
 				</View>
 			</View>
 		);
 	}
 }
+//	<Text style={styles.notes}>{this.props.detail.weather[0].description}</Text>
 
 const styles = StyleSheet.create({
 	card:{
 		backgroundColor:'pink',
 		borderWidth:0,
 		margin: 3,
-		height: 270,
+		height: 220,
 		borderRadius:20,
+		alignItems: 'center'
 	},
 	time:{
-		fontSize:25,
+		fontSize:18,
 		color:'#fff'
 	},
 	notes: {
-		fontSize: 18,
+		fontSize: 16,
 		color:'#fff',
 		textTransform:'capitalize',
-		alignSelf: 'center',
-		marginTop: 10
+		marginTop: 10,
+		flexWrap: 'wrap',
 	}
 });

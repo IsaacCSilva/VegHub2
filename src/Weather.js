@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, FlatList } from 'react-native';
+import { ScrollView, View, FlatList } from 'react-native';
 import ForecastCard from '.././components/ForecastCard';
 import { API_KEY } from '.././utils/WeatherAPIKey';
 
@@ -13,12 +13,12 @@ export class WeatherScreen extends Component {
 		super(props);
 
 		this.state = {
-			latitude: 0,
-			longitude: 0,
-          temperature: 0,
-          weatherCondition: null,
-			forecast: [],
-			error:''
+            latitude: 0,
+            longitude: 0,
+            temperature: 0,
+            weatherCondition: null,
+            forecast: [],
+            error:''
 		};
 
 	}
@@ -59,6 +59,7 @@ export class WeatherScreen extends Component {
 
 
 		return (
+		    <ScrollView scrollEnabled={true}>
 			<FlatList data={this.state.forecast.list}
 			style={{marginTop:20}}
 			keyExtractor={item => item.dt_txt}
@@ -75,6 +76,7 @@ export class WeatherScreen extends Component {
                 }
                numColumns={3}
             />
+            </ScrollView>
 		);
 	}
 

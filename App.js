@@ -37,7 +37,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HomeStack = createStackNavigator(
     {
-        //Home: LoginScreen,
         Home: HomeScreen,
         Menu: SlideMenu,
         //Home: LoginScreen,
