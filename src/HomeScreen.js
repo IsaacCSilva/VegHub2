@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {AsyncStorage, Dimensions, ScrollView, Image, StyleSheet, WebView, Button, TouchableOpacity, View, Text} from 'react-native';
+import {ImageBackground, AsyncStorage, Dimensions, ScrollView, Image, StyleSheet, WebView, Button, TouchableOpacity, View, Text} from 'react-native';
 import ActionButton from 'react-native-action-button';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {getDailyTip} from './DailyTips'
 
 const DeviceWidth = Dimensions.get('window').width;
 const scaleVal = 0.4;
@@ -17,7 +18,8 @@ export class HomeScreen extends Component {
         super(props)
         this.state = {
             check : false,
-            date: ''
+            date: '',
+            dailyTip: ''
         }
     }
 
@@ -29,6 +31,7 @@ export class HomeScreen extends Component {
         that.setState({
           date:
             months[month - 1] + ' ' + date + 'th, ' + year,
+          dailyTip: getDailyTip(),
         });
     }
 
@@ -72,25 +75,26 @@ export class HomeScreen extends Component {
                            Welcome Home, Camtono.
                         </Text>
                      </View>
-                     <View style={styles.pictureBox}>
-                        <Image
-                            source={require('./Images/plant-3.jpg')}
-                            style={styles.picture}
-                            />
-                     </View>
+                    <View style={styles.dateBox}>
+                        <ImageBackground
+                        source={require('./Images/spring.jpg')}
+                        style={styles.picture}
+                        >
+                            <View style={{flex: 1, justifyContent:'center',alignItems:'center'}}>
+                                <Text style ={styles.dateIntroText}> Today is </Text>
+                                <Text style ={styles.dateText}> {this.state.date} </Text>
+                            </View>
+                        </ImageBackground>
+                    </View>
 
                      <View style={styles.plantBox}>
-                         <Text style ={styles.headerText}> {"Today's Date"} </Text>
-                          <View style={styles.dateBox}>
-                             <Text style ={styles.dateText}> {this.state.date} </Text>
-                          </View>
                          <Text style ={styles.headerText}> Weather </Text>
                          <View style={styles.weatherBox}>
                             <Text style ={[styles.plantTitle, {fontWeight: 'bold'}]}> Michael the Ficus </Text>
                          </View>
                          <Text style ={styles.headerText}> Daily Tip </Text>
                          <View style={styles.dailyTipBox}>
-                             <Text style={styles.dailyTip}> Try not to kill your plants </Text>
+                             <Text style={styles.dailyTip}> {this.state.dailyTip} </Text>
                          </View>
                      </View>
 
@@ -142,6 +146,14 @@ export class HomeScreen extends Component {
 
 
 const styles = StyleSheet.create({
+
+    picture: {
+        flex:1,
+        resizeMode: 'cover',
+        alignItems: 'center',
+        height: undefined,
+        width: undefined
+    },
     fourSquareMenuContainer: {
         flex: 1,
         justifyContent: 'flex-end',
@@ -192,9 +204,7 @@ const styles = StyleSheet.create({
     },
     pictureBox: {
             height: 200,
-            marginLeft: 10,
-            marginRight: 10,
-            marginTop: 10,
+            margin: 10,
             borderRadius: 8,
             overflow: 'hidden',
             backgroundColor: 'steelblue'
@@ -219,12 +229,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     dateBox: {
-        height: 120,
-        marginBottom: 10,
+        height: 250,
+        margin: 10,
+        overflow: 'hidden',
         borderRadius: 8,
-        alignItems: 'center',
+        backgroundColor: 'pink',
         justifyContent: 'center',
-        backgroundColor: 'gray'
     },
     col:{
         flex: 1,
@@ -248,8 +258,13 @@ const styles = StyleSheet.create({
     },
     dateText: {
         fontFamily: 'Leixo',
-        fontSize: 50,
+        fontSize: 40,
         color: 'white',
+    },
+    dateIntroText: {
+            fontFamily: 'Leixo',
+            fontSize: 30,
+            color: 'white',
     },
     plantSubTitle: {
         fontFamily: 'Roboto',

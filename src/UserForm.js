@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ScrollView ,KeyboardAvoidingView, Alert, AppRegistry, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { ImageBackground, Image, ScrollView ,KeyboardAvoidingView, Alert, AppRegistry, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
 var t = require('tcomb-form-native');
 var Form = t.form.Form;
@@ -49,7 +49,12 @@ export class NewUserForm extends Component {
     return (
       <ScrollView>
       <View style={styles.container}>
-
+        <View style={styles.pictureBox}>
+            <Image
+                source={require('./Images/plant-3.jpg')}
+                style={styles.picture}
+                />
+            </View>
         <Form
           ref="form"
           type={User}
@@ -89,7 +94,16 @@ export class UpdateUserForm extends Component {
     return (
       <ScrollView>
       <View style={styles.container}>
-
+        <View style={styles.pictureBox}>
+            <ImageBackground
+                source={require('./Images/plant-3.jpg')}
+                style={styles.picture}
+            >
+            <View styles={{alignItems: 'center', justifyContent: 'center'}}>
+                <Text style={{borderWidth: 2, borderColor: 'white', color: 'white', fontSize: 25}}> EDIT PHOTO </Text>
+            </View>
+            </ImageBackground>
+        </View>
         <Form
           ref="form"
           type={User}
@@ -114,6 +128,20 @@ var styles = StyleSheet.create({
     marginTop: 50,
     padding: 20,
     backgroundColor: '#ffffff',
+  },
+  pictureBox: {
+      height: 200,
+      margin: 10,
+      borderRadius: 8,
+      overflow: 'hidden',
+      backgroundColor: 'steelblue'
+  },
+  picture: {
+      flex:1,
+      resizeMode: 'cover',
+      alignItems: 'center',
+      height: undefined,
+      width: undefined
   },
   buttonText: {
     fontSize: 18,
