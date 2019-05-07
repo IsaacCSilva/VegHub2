@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
+import { ImageBackground, ScrollView, Image, StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
 import {Alert, AppRegistry, Platform, TouchableOpacity} from 'react-native';
 export class ProfileScreen extends Component {
 
@@ -8,14 +8,7 @@ export class ProfileScreen extends Component {
         this.editUser = this.editUser.bind(this);
     }
     static navigationOptions = {
-        title: 'Your Profile',
-        headerTitleStyle:{
-            color: 'black',
-        },
-        headerStyle:{
-            backgroundColor: 'transparent',
-            zIndex: 100,
-        },
+        header: null
     };
 
     editUser(user){
@@ -33,8 +26,12 @@ export class ProfileScreen extends Component {
 
         return (
             <ScrollView style={{backgroundColor:'white'}}>
+                <ImageBackground
+                source={require('./Images/homeBack.jpg')}
+                style={styles.picture}
+                >
                 <View style ={styles.col}>
-                     <View style={{flex: 1}}>
+                     <View style={{flex: 1, marginTop: 30}}>
                         <TouchableOpacity onPress={() => this.editUser(user)}>
                             <Text style={styles.editButton}> EDIT </Text>
                         </TouchableOpacity>
@@ -49,17 +46,17 @@ export class ProfileScreen extends Component {
 
                         <View style={styles.row}>
                             <View style={[styles.userDetailsBox, {borderLeftWidth: 0}, {borderLeftColor: 0}]}>
-                                <Text style={{textAlign:'center', color: 'white', fontSize: 20}}>12</Text>
-                                <Text style={{textAlign:'center', color: 'white', fontSize: 14}}>P L A N T S</Text>
+                                <Text style={{textAlign:'center', color: 'black', fontSize: 20}}>12</Text>
+                                <Text style={{textAlign:'center', color: 'black', fontSize: 14}}>P L A N T S</Text>
                             </View>
                             <View style={styles.userDetailsBox}>
-                                <Text style={{textAlign:'center', color: 'white', fontSize: 20}}>5</Text>
-                                <Text style={{textAlign:'center', color: 'white', fontSize: 14}}>F A V O R I T E S</Text>
+                                <Text style={{textAlign:'center', color: 'black', fontSize: 20}}>5</Text>
+                                <Text style={{textAlign:'center', color: 'black', fontSize: 14}}>F A V O R I T E S</Text>
                             </View>
                             <View style={styles.userDetailsBox}>
-                                <Text style={{textAlign:'center', color: 'white', fontSize: 20}}>5</Text>
-                                <Text style={{textAlign:'center', color: 'white', fontSize: 14}}>D E A D</Text>
-                                <Text style={{textAlign:'center', color: 'white', fontSize: 14}}>P L A N T S</Text>
+                                <Text style={{textAlign:'center', color: 'black', fontSize: 20}}>5</Text>
+                                <Text style={{textAlign:'center', color: 'black', fontSize: 14}}>D E A D</Text>
+                                <Text style={{textAlign:'center', color: 'black', fontSize: 14}}>P L A N T S</Text>
                             </View>
                         </View>
 
@@ -70,7 +67,7 @@ export class ProfileScreen extends Component {
                             <Text style ={[styles.UserTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> {user.name} </Text>
                             <Text style ={[styles.UserTitle,{textAlign: 'left'}, {marginLeft: 15}, {color: 'gray'}, {fontSize: 20}]}> Expert Gardener </Text>
                          </View>
-                         <View style={[styles.UserTitleBox, {height: 110}, {backgroundColor: '#ccb29d'}]}>
+                         <View style={[styles.UserTitleBox, {height: 110}, {backgroundColor: 'rgba(124,85,0,.1)'}]}>
                              <Text style ={[styles.UserSubTitle,{textAlign: 'left'}, {marginLeft: 10}, {fontWeight: 'bold'}]}> About </Text>
                              <Text style ={styles.UserDescription}>
                                 Lorem Ipsum suck a bitch motherfucker waht the fuck do you want I do gorilla warfare in the united states navy
@@ -79,12 +76,20 @@ export class ProfileScreen extends Component {
                      </View>
 
                  </View>
+                 </ImageBackground>
             </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    picture: {
+        flex:1,
+        resizeMode: 'cover',
+        alignItems: 'center',
+        height: undefined,
+        width: undefined
+    },
     editButton: {
         fontSize:20,
         marginRight: 10,
@@ -94,14 +99,14 @@ const styles = StyleSheet.create({
         height: 200,
         width: 200,
         overflow: 'hidden',
-        borderRadius: 200/2
+        borderRadius: 200/2,
     },
     pictureBox: {
         height: 300,
         overflow: 'hidden',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: '#d3d3d3'
+        backgroundColor: 'rgba(255,255,255,0.7)',
     },
     userDetailsBox: {
         alignItems:'center',
@@ -109,7 +114,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 120,
         borderLeftWidth: 1,
-        borderLeftColor: 'white'
+        borderLeftColor: 'black'
     },
     UserBox: {
         height: 300,
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop: 10,
         borderRadius: 8,
-        backgroundColor: '#3f1d00'
+        backgroundColor: 'rgba(255,255,255,0.7)',
     },
     UserTitleBox: {
             height: 85,
@@ -125,8 +130,8 @@ const styles = StyleSheet.create({
             marginRight: 10,
             marginTop: 10,
             borderRadius: 8,
-            backgroundColor: 'white'
-        },
+            backgroundColor: 'rgba(255,255,255,.7)'
+    },
     col:{
         flex: 1,
         flexDirection: 'column',

@@ -7,6 +7,7 @@ import { FlatGrid } from 'react-native-super-grid';
 
 
 
+
 export class WeatherScreen extends Component {
 
 	constructor(props){
@@ -18,7 +19,7 @@ export class WeatherScreen extends Component {
             temperature: 0,
             weatherCondition: null,
             forecast: [],
-            error:''
+            error:'',
 		};
 
 	}
@@ -59,7 +60,7 @@ export class WeatherScreen extends Component {
 
 
 		return (
-		    <ScrollView scrollEnabled={true}>
+		    <View style={{backgroundColor: 'transparent'}}>
 			<FlatList data={this.state.forecast.list}
 			style={{marginTop:20}}
 			keyExtractor={item => item.dt_txt}
@@ -76,7 +77,7 @@ export class WeatherScreen extends Component {
                 }
                numColumns={3}
             />
-            </ScrollView>
+            </View>
 		);
 	}
 

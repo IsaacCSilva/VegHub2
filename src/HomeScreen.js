@@ -15,6 +15,9 @@ var months =["Jan", "Feb", "March",
              "October", "November", "December"];
 
 export class HomeScreen extends Component {
+    static navigationOptions = {
+        header: null
+    };
     constructor(props){
         super(props)
         this.state = {
@@ -70,11 +73,24 @@ export class HomeScreen extends Component {
         return (
         <View>
             <ScrollView style={{backgroundColor:'white'}}>
+                <ImageBackground
+                source={require('./Images/homeBack.jpg')}
+                style={styles.picture}
+                >
                 <View style ={styles.col}>
-                     <View style={styles.plantTitle}>
-                        <Text style ={[styles.plantTitle,{textAlign: 'left'}, {marginLeft: 15}, {fontWeight: 'bold'}]}>
-                           Welcome Home, Camtono.
-                        </Text>
+                     <View style={{flex:1, flexDirection:'row'}}>
+                         <View style={styles.plantTitleBox}>
+                            <Text style ={[styles.plantTitle]}>
+                               Welcome Home, {" "}
+                            </Text>
+                            <Text style ={[styles.plantTitle, {color: 'green'}]}>
+                               Camtono.
+                            </Text>
+                         </View>
+
+                         <View style={{flex:1, overflow:'hidden', marginRight: 3}}>
+                            <Image style={[styles.picture, {resizeMode: 'contain'}]} source={require('./Images/sunGIF.gif')}/>
+                         </View>
                      </View>
                     <View style={styles.dateBox}>
                         <ImageBackground
@@ -89,19 +105,31 @@ export class HomeScreen extends Component {
                     </View>
 
                      <View style={styles.plantBox}>
-                         <Text style ={styles.headerText}> Weather </Text>
+                         <View style={styles.dailyTipBox}>
+                              <ImageBackground
+                              source={require('./Images/quoteBack.png')}
+                              style={styles.picture}
+                              >
+                                  <View style={{flex: 1, justifyContent:'center',alignItems:'center'}}>
+                                      <Text style ={[styles.dailyTip, {fontSize: 22}, {textAlign: 'left'}]}> Daily Tip: </Text>
+                                      <Text style ={styles.dailyTip}> {this.state.dailyTip} </Text>
+                                  </View>
+                              </ImageBackground>
+                          </View>
                          <View style={styles.weatherBox} >
                             <WeatherScreen />
                          </View>
-                         <Text style ={styles.headerText}> Daily Tip </Text>
-                         <View style={styles.dailyTipBox}>
-                             <Text style={styles.dailyTip}> {this.state.dailyTip} </Text>
-                         </View>
+
+                         <View style={styles.plantRowBox}>
+                              <ImageBackground
+                              source={require('./Images/rowPlants.png')}
+                              style={styles.picture}
+                              >
+                              </ImageBackground>
+                          </View>
                      </View>
-
                  </View>
-                 {this.renderWebView()}
-
+                </ImageBackground>
             </ScrollView>
 
             <ActionButton onPress={() => this._panel.show() }
@@ -170,7 +198,6 @@ const styles = StyleSheet.create({
         width: DeviceWidth*scaleVal,
         height: DeviceWidth*scaleVal,
         marginBottom:1,
-        backgroundColor: 'white'
     },
     fourSquare1: {
         width: DeviceWidth*scaleVal,
@@ -179,16 +206,24 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue'
     },
     dailyTipBox: {
-        height: 170,
+        flex:1,
+        height: 190,
         marginTop: 10,
         borderRadius: 8,
-        backgroundColor: '#565656',
+        overflow:'hidden',
+        justifyContent: 'center',
+    },
+    plantRowBox: {
+        height: 190,
+        marginTop: 10,
+        borderRadius: 8,
+        overflow:'hidden',
         justifyContent: 'center',
     },
     dailyTip: {
         fontFamily: 'OrangeBlossoms',
-        color: 'white',
-        fontSize: 40,
+        color: 'black',
+        fontSize: 35,
         textAlign: 'center'
     },
     headerText: {
@@ -201,36 +236,26 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontWeight: 'bold'
     },
-    pictureBox: {
-            height: 200,
-            margin: 10,
-            borderRadius: 8,
-            overflow: 'hidden',
-            backgroundColor: 'steelblue'
-        },
     plantBox: {
-        height: 800,
-        marginTop: 10,
-        backgroundColor: '#353535'
+        flex:1,
+        backgroundColor: 'transparent'
     },
     plantTitleBox: {
-            height: 85,
-            marginLeft: 10,
-            marginRight: 10,
-            marginTop: 10,
-            borderRadius: 8,
-            backgroundColor: 'white'
-        },
-    weatherBox: {
-        height: 270,
-        marginTop: 10,
+        marginTop: 45,
+        height: 120,
         borderRadius: 8,
-        paddingVertical: 0,
-        backgroundColor: 'white'
+        marginLeft: 5,
+        justifyContent: 'flex-start',
+    },
+    weatherBox: {
+        height: 248,
+        width: DeviceWidth,
+        borderRadius: 8,
     },
     dateBox: {
         height: 250,
         margin: 10,
+        marginBottom: 0,
         overflow: 'hidden',
         borderRadius: 8,
         backgroundColor: 'pink',
@@ -244,17 +269,17 @@ const styles = StyleSheet.create({
     },
 
     picture: {
-            flex:1,
-            resizeMode: 'cover',
-            alignItems: 'center',
-            height: undefined,
-            width: undefined
-        },
+        flex:1,
+        resizeMode: 'cover',
+        alignItems: 'center',
+        height: undefined,
+        width: undefined
+    },
     plantTitle: {
-        fontFamily: 'Leixo',
-        fontSize: 30,
-        textAlign:'center',
-        color: 'green',
+        fontFamily: 'OrangeBlossoms',
+        fontSize: 45,
+        textAlign:'left',
+        color: 'black',
     },
     dateText: {
         fontFamily: 'Leixo',

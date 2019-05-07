@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
+import { ImageBackground, ScrollView, Image, StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
 import {Alert, AppRegistry, Platform, TouchableOpacity} from 'react-native';
 export class PlantsResultsScreen extends Component {
 
@@ -19,10 +19,7 @@ export class PlantsResultsScreen extends Component {
         });
     }
     static navigationOptions = {
-            headerStyle:{
-                backgroundColor: 'transparent',
-                zIndex: 100,
-            },
+            header: null
         };
 
     editPlant(plant){
@@ -38,8 +35,12 @@ export class PlantsResultsScreen extends Component {
 
         return (
             <ScrollView style={{backgroundColor:'white'}}>
+            <ImageBackground
+            source={require('./Images/homeBack.jpg')}
+            style={styles.picture}
+            >
                 <View style ={styles.col}>
-                    <View style={{flex: 1}}>
+                    <View style={{flex: 1, marginTop: 30}}>
                         <TouchableOpacity onPress={() => this.editPlant(this.state.plant)}>
                             <Text style={styles.editButton}> EDIT </Text>
                         </TouchableOpacity>
@@ -65,12 +66,20 @@ export class PlantsResultsScreen extends Component {
                      </View>
 
                  </View>
+             </ImageBackground>
             </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    picture: {
+        flex:1,
+        resizeMode: 'cover',
+        alignItems: 'center',
+        height: undefined,
+        width: undefined
+    },
     editButton: {
         fontSize:20,
         marginRight: 10,
@@ -91,7 +100,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop: 10,
         borderRadius: 8,
-        backgroundColor: '#3f1d00'
+        backgroundColor: 'rgba(155,106,0,.3)'
     },
     plantTitleBox: {
             height: 85,
@@ -99,7 +108,7 @@ const styles = StyleSheet.create({
             marginRight: 10,
             marginTop: 10,
             borderRadius: 8,
-            backgroundColor: 'white'
+            backgroundColor: 'rgba(255,255,255,.7)'
         },
     col:{
         flex: 1,
@@ -109,12 +118,12 @@ const styles = StyleSheet.create({
     },
 
     picture: {
-            flex:1,
-            resizeMode: 'cover',
-            alignItems: 'center',
-            height: undefined,
-            width: undefined
-        },
+        flex:1,
+        resizeMode: 'cover',
+        alignItems: 'center',
+        height: undefined,
+        width: undefined
+    },
     plantTitle: {
         fontFamily: 'Leixo',
         fontSize: 30,

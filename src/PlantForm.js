@@ -79,6 +79,8 @@ export class UpdatePlantForm extends Component {
       console.log(value);
       console.log(value.PlantName);
     }
+    Alert.alert("Plant Updated!");
+    this.props.navigation.goBack();
   }
 
   //delete plant

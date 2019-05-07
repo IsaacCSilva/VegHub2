@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { PlantsResultsScreen } from './PlantsResultsScreen';
 
 import {SearchBar} from 'react-native-elements';
+
 const DeviceWidth = Dimensions.get('window').width;
 const scaleVal = 0.4;
 
@@ -25,10 +26,7 @@ const scaleVal = 0.4;
 
 export class SlideMenu extends Component {
     static navigationOptions = {
-        headerStyle:{
-            backgroundColor: 'transparent',
-            zIndex: 100,
-        },
+        header: null,
     };
 
     render() {
@@ -86,14 +84,7 @@ export class SlideMenu extends Component {
 export class PlantsScreen extends Component {
 
     static navigationOptions = {
-        title: 'Your Plants',
-        headerTitleStyle:{
-            color: 'black',
-        },
-        headerStyle:{
-            backgroundColor: 'transparent',
-            zIndex: 100,
-        },
+        header: null
     };
 
     constructor(props){
@@ -147,6 +138,15 @@ export class PlantsScreen extends Component {
         return (
 
             <View style={{flex:1, backgroundColor: 'white'}}>
+            <ImageBackground
+            source={require('./Images/homeBack.jpg')}
+            style={styles.picture}
+            >
+            <View style={styles.headerTitleBox}>
+                <Text style ={[styles.headerTitle]}>
+                   Your Plants
+                </Text>
+            </View>
             <FlatGrid
             itemDimension={130}
             items={this.state.items}
@@ -161,7 +161,7 @@ export class PlantsScreen extends Component {
                             <TouchableOpacity onPress={() => this.toggleLike(item)}>
                                 <Image
                                   source={item.liked ? require('./Images/heart.png') : require('./Images/heart-outline.png')}
-                                  style={{width: 40, height: 40}}
+                                  style={{width: 30, height: 30, margin: 4}}
                                   resizeMode="cover"
                                 />
                             </TouchableOpacity>
@@ -211,7 +211,7 @@ export class PlantsScreen extends Component {
                                        </View>
                                    </View>
                             </SlidingUpPanel>
-
+            </ImageBackground>
             </View>
         );
     }
@@ -219,6 +219,25 @@ export class PlantsScreen extends Component {
 
 
 const styles = StyleSheet.create({
+    headerTitleBox: {
+        marginTop: 30,
+        height: 45,
+        borderRadius: 8,
+        justifyContent: 'center',
+    },
+    headerTitle: {
+        fontFamily: 'OrangeBlossoms',
+        fontSize: 45,
+        textAlign:'left',
+        color: 'black',
+    },
+    picture: {
+        flex:1,
+        resizeMode: 'cover',
+        alignItems: 'center',
+        height: undefined,
+        width: undefined
+    },
   fourSquareMenuContainer: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -276,8 +295,10 @@ const styles = StyleSheet.create({
   imageThumbnail: {
     flex: 1,
     resizeMode: 'contain',
+    borderRadius: 10,
     height: undefined,
     width: undefined,
+    overflow: 'hidden',
     },
   backBox:{
     flex:1,
