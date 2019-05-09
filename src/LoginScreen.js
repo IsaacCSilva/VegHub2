@@ -15,7 +15,7 @@ export class LoginScreen extends Component {
     //Standard login screen with sign up / sign in mechanics
     render() {
         return (
-
+            <View>
             <ImageBackground style={{
                 flex: 1,
                 justifyContent: 'space-evenly',
@@ -144,6 +144,7 @@ export class LoginScreen extends Component {
                     </View>
                 </View>
             </ImageBackground>
+            </View>
         );
     }
 }

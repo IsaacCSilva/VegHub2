@@ -137,6 +137,12 @@ export class PlantsScreen extends Component {
             this.props.navigation.navigate(data);
     }
 
+    _signOutAsync = async() => {
+        this.props.navigation.navigate('Auth');
+        AsyncStorage.remove('userToken');
+
+    };
+
 
     //Views of a grid of our plants with...
     //a card dedicated to a plant
@@ -201,21 +207,27 @@ export class PlantsScreen extends Component {
                                        <View style={styles.fourSquareMenuRow}>
                                            <View>
                                                <TouchableOpacity onPress={() => this.handleClickSquare('Camera')}>
-                                                   <View style={[styles.fourSquare, {borderTopLeftRadius: 10}]}>
-                                                       <Text style={{textAlign:'center'}}> CAMERA </Text>
+                                                   <View style={[styles.fourSquare, {borderTopLeftRadius: 10}, {justifyContent:'center'}, {alignItems: 'center'}]}>
+                                                       <Icon name="md-camera" size={70} color="#4F8EF7" />
                                                    </View>
                                                </TouchableOpacity>
-                                               <TouchableOpacity onPress={() => this.handleClickSquare("Plants")}>
-                                                   <View style={[styles.fourSquare, {borderBottomLeftRadius: 10}]}>
+                                               <TouchableOpacity onPress={() => this.handleClickSquare("Profile")}>
+                                                   <View style={[styles.fourSquare, {borderBottomLeftRadius: 10}, {justifyContent:'center'}, {alignItems: 'center'}]}>
+                                                    <Icon name="md-person" size={70} color="#4F8EF7" />
                                                    </View>
                                                </TouchableOpacity>
                                            </View>
                                            <View>
-                                               <TouchableOpacity onPress={() => this.handleClickSquare('Plants')}>
-                                                   <View style={[styles.fourSquare, {marginLeft: 1}, {borderTopRightRadius: 10}]} />
+                                               <TouchableOpacity onPress={() => this.handleClickSquare('Home')}>
+                                                   <View style={[styles.fourSquare, {marginLeft: 1}, {borderTopRightRadius: 10}, {justifyContent:'center'}, {alignItems: 'center'}]}>
+                                                    <Icon name="md-home" size={70} color="#4F8EF7" />
+                                                   <
+                                                   /View>
                                                </TouchableOpacity>
-                                               <TouchableOpacity onPress={() => this.handleClickSquare('Plants')}>
-                                                   <View style={[styles.fourSquare, {marginLeft: 1}, {borderBottomRightRadius: 10}]} />
+                                               <TouchableOpacity onPress={() => this.handleClickSquare(this._signOutAsync())}>
+                                                   <View style={[styles.fourSquare, {marginLeft: 1}, {borderBottomRightRadius: 10}, {justifyContent:'center'}, {alignItems: 'center'}]}>
+                                                    <Icon name="md-log-out" size={70} color="#4F8EF7" />
+                                                   </View>
                                                </TouchableOpacity>
                                            </View>
                                        </View>

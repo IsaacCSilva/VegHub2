@@ -57,7 +57,8 @@ const HomeStack = createStackNavigator(
 const PlantStack = createStackNavigator({
         Plants: PlantsScreen,
         PlantsResults: PlantsResultsScreen,
-        UpdatePlantForm: UpdatePlantForm
+        UpdatePlantForm: UpdatePlantForm,
+        Camera: CameraScreen
 
     },
     {
