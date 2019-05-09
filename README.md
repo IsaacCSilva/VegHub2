@@ -1,5 +1,11 @@
 # VeggieID Running 
 
+## IMPORTANT
+    This is the code that we demoed in the final presentation.
+    This is the functioning repostory the DOES NOT connect to the backend and only contain the frontend and functionality.
+    If you would like to see the code that attempts to connect to the backend (it does not work), please refer to:
+    https://github.com/zance1054/VegIDMERN/new/donttouchthis/
+
 ## Prerequistes
 
     ensure that you have the node package manager installed and configutred in your console
