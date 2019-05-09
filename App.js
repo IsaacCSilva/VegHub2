@@ -24,6 +24,7 @@ SlideMenu
 import {CameraScreen} from './src/CameraScreen';
 import {WeatherScreen} from './src/Weather';
 
+//Imports all of the screens we need
 import {LoginScreen} from './src/LoginScreen';
 import {PlantsResultsScreen} from './src/PlantsResultsScreen';
 import {InsertPlantForm, UpdatePlantForm} from './src/PlantForm';
@@ -35,12 +36,12 @@ import {StatsScreen} from './src/StatsScreen';
 import {SignInScreen} from './src/SignInScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+
+//Creates a stack of navigators for our Home Tab
+//Contains every navigation we would go through on our home page
 const HomeStack = createStackNavigator(
     {
         Home: HomeScreen,
-        Menu: SlideMenu,
-        //Home: LoginScreen,
-        Camera: CameraScreen
     },
     {
         defaultNavigationOptions: {
@@ -51,6 +52,8 @@ const HomeStack = createStackNavigator(
     }
 );
 
+//Creates a stack of navigators for our Plant Tab
+//Contains every navigation we would go through on this page
 const PlantStack = createStackNavigator({
         Plants: PlantsScreen,
         PlantsResults: PlantsResultsScreen,
@@ -61,6 +64,8 @@ const PlantStack = createStackNavigator({
     }
 );
 
+//Creates a stack of navigators for our Plant Tab
+//Contains every navigation we would go through on this page
 const ProfileStack = createStackNavigator({
         Profile: ProfileScreen,
         EditProfile: UpdateUserForm
@@ -69,6 +74,8 @@ const ProfileStack = createStackNavigator({
     }
 );
 
+//Creates a stack of navigators for our Statistics Tab
+//Contains every navigation we would go through on this page
 const StatsStack = createStackNavigator({
         Statistics: StatsScreen,
     },
@@ -81,11 +88,13 @@ const StatsStack = createStackNavigator({
     }
 );
 
+//Creates a stack of navigators for our Authentication per User
 const AuthStack = createStackNavigator({
         SignIn: SignInScreen,
         //Forgot Password:
 });
 
+//Loading Screen per our users to handle authentication
 class AuthLoadingScreen extends Component {
   constructor() {
     super();
@@ -112,15 +121,7 @@ class AuthLoadingScreen extends Component {
   }
 }
 
-const DrawerNavigator = createDrawerNavigator({
-    Home: HomeStack,
-    Notifications: PlantStack,
-    },
-    {
-        drawerWidth: 300
-    }
-);
-
+//Holds all of our tabs at the bottom of our screen for the user to navigate between tabs
 const BottomTabNavigator = createBottomTabNavigator({
     Home: HomeStack,
     Plants: PlantStack,
@@ -145,50 +146,11 @@ const BottomTabNavigator = createBottomTabNavigator({
     }
 });
 
-/*
-const AppStack = createStackNavigator({
-    Main: BottomTabNavigator,
-    Drawer: DrawerNavigator,
-    },
-    {
-        headerMode: 'none', //removes the dumb first header
-        navigationOptions:  ({ navigation }) => {
-
-                let headerOption = {};
-                if (navigation.state.routeName === 'Home') {
-                    headerOption.header = null;
-                }
-                return {
-                    headerVisible: false, //removes the dumb first header
-                }
-            }
-    })
-
-export default class Main extends Component {
-  constructor(props)
-  {
-    super(props);
-    this.state = {
-      route: {
-        name: 'Home',
-        passProps:{
-          notification: props.notification
-        }
-      }
-    };
-  }
-  render() {
-    return (
-        <App/>
-    );
-  }
-}
-
-AppRegistry.registerComponent('NewNavigation', () => Main);
-*/
 
 //disables the warnings
 console.disableYellowBox=true;
+
+//Creates an application container that holds our ENTIRE app.
 export default createAppContainer(createSwitchNavigator(
 {
     AuthLoading: AuthLoadingScreen,
@@ -198,7 +160,8 @@ export default createAppContainer(createSwitchNavigator(
 {
     initialRouteName: 'AuthLoading',
 }
-));
+)
+);
 
 
 

@@ -8,7 +8,6 @@ var Plant = t.struct({
   PlantName: t.String,              // a required string
   NickName: t.maybe(t.String),  // an optional string
   DateOfBirth: t.Date,               // a required number
-  rememberMe: t.Boolean        // a boolean
 });
 
 
@@ -25,10 +24,9 @@ var options = {
 };
 
 
-
 export class InsertPlantForm extends Component {
 
-  //USE NEW PLANT INSERT QUERY HERE
+  //Inserts the plants upon picture being taken
   onPress=()=> {
     // call getValue() to get the values of the form
 
@@ -41,10 +39,9 @@ export class InsertPlantForm extends Component {
   }
 
   render() {
-    //GET THESE VALUES FROM THE GOOGLE VISION API JSON
     const { navigation } = this.props;
     const plant = navigation.getParam('plant', 'NO-ID');
-    //GET THESE VALUES FROM THE GOOGLE VISION API JSON
+    //Gets values from Google Vision API to autofill the form
     const insertValue = {
       PlantName: "Google Vision"
     };
@@ -70,8 +67,7 @@ export class InsertPlantForm extends Component {
 
 export class UpdatePlantForm extends Component {
 
-  //USE UPDATE QUERY HERE INSTEAD.
-  //We can access the ID!
+  //Calls the update query to update our plants
   onPress=()=> {
     // call getValue() to get the values of the form
     var value = this.refs.form.getValue();
@@ -83,11 +79,7 @@ export class UpdatePlantForm extends Component {
     this.props.navigation.goBack();
   }
 
-  //delete plant
-  onPressKill=()=>{
-
-  }
-
+  //Vuew for our update plant form
   render() {
     const { navigation } = this.props;
     const plant = navigation.getParam('plant', 'NO-ID');
@@ -116,6 +108,7 @@ export class UpdatePlantForm extends Component {
   }
 }
 
+//Styling for our views
 var styles = StyleSheet.create({
   container: {
     justifyContent: 'center',

@@ -7,7 +7,7 @@ import { FlatGrid } from 'react-native-super-grid';
 
 
 
-
+//Gets the weather and sticks it in our HomeScreen Box
 export class WeatherScreen extends Component {
 
 	constructor(props){
@@ -55,7 +55,10 @@ export class WeatherScreen extends Component {
 				forecast: data
 			}));
 		})
+
 	}
+
+
 	render() {
 
 

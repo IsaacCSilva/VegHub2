@@ -7,13 +7,10 @@ export default class ForecastCard extends Component {
 
 	render() {
 		let time;
-
 		// Create a new date from the passed date time
 		var date = new Date(this.props.detail.dt*1000);
-
 		// Hours part from the timestamp
 		var hours = date.getHours();
-
 		//converts default military time to standard time
 		if(Number(hours) > 12)
 		{
@@ -31,7 +28,7 @@ export default class ForecastCard extends Component {
 		var minutes = "0" + date.getMinutes();
 
 		time = hours + ':' + minutes.substr(-2) + status;
-
+        //Returns out nice forecast view cards
 		return (
 			<View style={styles.card}>
 				<Text style={styles.notes}>{this.props.location}</Text>
@@ -42,7 +39,6 @@ export default class ForecastCard extends Component {
 				</View>
 
 				<View style={{flexDirection:'column', alignItems:'center'}}>
-				    <Text style={styles.notes}>{this.props.detail.dt_txt.substr(0,10)}</Text>
 					<Text style={styles.notes}>{Math.round( this.props.detail.main.temp * 10) / 10 }&#8457;</Text>
 				</View>
 			</View>
