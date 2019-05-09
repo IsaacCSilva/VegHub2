@@ -1,4 +1,4 @@
-package com.newnavigation;
+package com.veggieid;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "NewNavigation";
+        return "VeggieID";
     }
 
     @Override
@@ -26,4 +26,3 @@ public class MainActivity extends ReactActivity {
         };
     }
 }
-

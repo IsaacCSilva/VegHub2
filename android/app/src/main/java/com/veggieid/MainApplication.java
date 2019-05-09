@@ -1,4 +1,4 @@
-package com.newnavigation;
+package com.veggieid;
 
 import android.app.Application;
 
@@ -28,7 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-            new SvgPackage(),
+                    new SvgPackage(),
                     new VectorIconsPackage(),
                     new RNGestureHandlerPackage(),
                     new RNCameraPackage()
